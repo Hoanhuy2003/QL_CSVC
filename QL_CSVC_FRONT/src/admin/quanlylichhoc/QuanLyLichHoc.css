@@ -1,0 +1,333 @@
+/* QuanLyLichHoc.css */
+.schedule-management {
+  padding: 24px;
+  background-color: #f8fafc;
+  min-height: 100vh;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
+}
+
+/* Header */
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 24px;
+}
+
+.page-title {
+  font-size: 28px;
+  font-weight: 600;
+  color: #1e293b;
+  margin: 0;
+}
+
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.view-button {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: white;
+  color: #64748b;
+  border: 1px solid #e2e8f0;
+  padding: 10px 16px;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.view-button:hover {
+  color: #475569;
+  border-color: #cbd5e1;
+}
+
+.view-button.active {
+  background: #1e293b;
+  color: white;
+  border-color: #1e293b;
+}
+
+.add-button {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: #3b82f6;
+  color: white;
+  border: none;
+  padding: 12px 20px;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.add-button:hover {
+  background: #2563eb;
+}
+
+/* Schedule Title */
+.schedule-title {
+  margin-bottom: 24px;
+}
+
+.schedule-title h2 {
+  font-size: 20px;
+  font-weight: 600;
+  color: #3b82f6;
+  margin: 0;
+}
+
+/* Schedule Grid */
+.schedule-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 2px;
+  background: #e2e8f0;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.day-column {
+  background: white;
+  min-height: 400px;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Day Header */
+.day-header {
+  background: #f8fafc;
+  padding: 16px 12px;
+  border-bottom: 1px solid #e2e8f0;
+  text-align: center;
+}
+
+.day-header h3 {
+  font-size: 14px;
+  font-weight: 600;
+  color: #475569;
+  margin: 0;
+}
+
+/* Day Content */
+.day-content {
+  flex: 1;
+  padding: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+/* Schedule Card */
+.schedule-card {
+  padding: 12px;
+  border-radius: 8px;
+  border-left: 4px solid;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s, box-shadow 0.2s;
+  cursor: pointer;
+}
+
+.schedule-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.schedule-card.class-theory {
+  background: #dbeafe;
+  border-left-color: #3b82f6;
+}
+
+.schedule-card.class-lab {
+  background: #dcfce7;
+  border-left-color: #22c55e;
+}
+
+.schedule-card.class-practice {
+  background: #fef3c7;
+  border-left-color: #f59e0b;
+}
+
+.schedule-time {
+  font-size: 12px;
+  font-weight: 600;
+  color: #64748b;
+  margin-bottom: 6px;
+}
+
+.schedule-subject {
+  font-size: 14px;
+  font-weight: 600;
+  color: #1e293b;
+  margin-bottom: 6px;
+  line-height: 1.3;
+}
+
+.schedule-room {
+  font-size: 13px;
+  font-weight: 600;
+  color: #475569;
+  margin-bottom: 4px;
+  font-family: 'Monaco', 'Menlo', monospace;
+}
+
+.schedule-instructor {
+  font-size: 12px;
+  color: #64748b;
+  font-style: italic;
+}
+
+/* Empty Day */
+.empty-day {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  min-height: 200px;
+}
+
+.empty-text {
+  font-size: 14px;
+  color: #94a3b8;
+  text-align: center;
+  font-style: italic;
+}
+
+/* Responsive Design */
+@media (max-width: 1400px) {
+  .schedule-grid {
+    grid-template-columns: repeat(5, 1fr);
+  }
+  
+  .day-column:nth-child(6),
+  .day-column:nth-child(7) {
+    display: none;
+  }
+}
+
+@media (max-width: 1024px) {
+  .schedule-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  
+  .day-column:nth-child(n+4) {
+    display: none;
+  }
+}
+
+@media (max-width: 768px) {
+  .schedule-management {
+    padding: 16px;
+  }
+  
+  .header {
+    flex-direction: column;
+    gap: 16px;
+    align-items: stretch;
+  }
+  
+  .header-actions {
+    justify-content: space-between;
+  }
+  
+  .schedule-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .day-column {
+    min-height: auto;
+  }
+  
+  .day-content {
+    min-height: 150px;
+  }
+}
+
+@media (max-width: 480px) {
+  .page-title {
+    font-size: 24px;
+  }
+  
+  .header-actions {
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  
+  .view-button,
+  .add-button {
+    flex: 1;
+    justify-content: center;
+    min-width: 120px;
+  }
+  
+  .schedule-card {
+    padding: 10px;
+  }
+  
+  .schedule-subject {
+    font-size: 13px;
+  }
+  
+  .schedule-time {
+    font-size: 11px;
+  }
+  
+  .schedule-room {
+    font-size: 12px;
+  }
+  
+  .schedule-instructor {
+    font-size: 11px;
+  }
+}
+
+/* Animation for cards */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.schedule-card {
+  animation: fadeIn 0.3s ease-out;
+}
+
+/* Hover effects for interactive elements */
+.schedule-card:hover .schedule-subject {
+  color: #0f172a;
+}
+
+.schedule-card:hover .schedule-time {
+  color: #475569;
+}
+
+/* Custom scrollbar for day content */
+.day-content::-webkit-scrollbar {
+  width: 4px;
+}
+
+.day-content::-webkit-scrollbar-track {
+  background: #f1f5f9;
+}
+
+.day-content::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 2px;
+}
+
+.day-content::-webkit-scrollbar-thumb:hover {
+  background: #94a3b8;
+}
