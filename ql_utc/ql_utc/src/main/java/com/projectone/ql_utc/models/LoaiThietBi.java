@@ -11,13 +11,13 @@ import java.util.List;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-@Table(name = "loaitb")
+@Table(name = "loai_tb")
 public class LoaiThietBi {
     @Id
-    @Column(name = "MaLoai", length = 20)
+    @Column(name = "ma_loai", length = 20)
     private String maLoai;
 
-    @Column(name = "TenLoai", nullable = false, length = 50)
+    @Column(name = "ten_loai", nullable = false, length = 50)
     private String tenLoai;
 
     @OneToMany(mappedBy = "loai")

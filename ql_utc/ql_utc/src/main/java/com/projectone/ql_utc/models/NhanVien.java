@@ -9,22 +9,22 @@ import lombok.*;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-@Table(name = "nhanvien")
+@Table(name = "nhan_vien")
 public class NhanVien {
     @Id
-    @Column(name = "MaNV", length = 20)
+    @Column(name = "ma_nv", length = 20)
     private String maNV;
 
-    @Column(name = "TenNV", nullable = false, length = 50)
+    @Column(name = "ten_nv", nullable = false, length = 50)
     private String tenNV;
 
-    @Column(name = "Email", length = 50)
+    @Column(name = "email", length = 50)
     private String email;
 
-    @Column(name = "SDT", length = 20)
+    @Column(name = "sdt", length = 20)
     private String sdt;
 
-    @Column(name = "DangLamViec")
+    @Column(name = "dang_lam_viec")
     private Boolean dangLamViec = true;
 
     // getters & setters

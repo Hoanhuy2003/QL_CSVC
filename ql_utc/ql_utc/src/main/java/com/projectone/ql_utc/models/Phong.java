@@ -1,5 +1,6 @@
 package com.projectone.ql_utc.models;
 
+import com.projectone.ql_utc.enums.TrangThaiPhong;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -12,20 +13,20 @@ import lombok.*;
 @Table(name = "phong")
 public class Phong {
     @Id
-    @Column(name = "MaPhong", length = 20)
+    @Column(name = "ma_phong", length = 20)
     private String maPhong;
 
-    @Column(name = "TenPhong", length = 50)
+    @Column(name = "ten_phong", length = 50)
     private String tenPhong;
 
-    @Column(name = "LoaiPhong", length = 30)
+    @Column(name = "loai_phong", length = 30)
     private String loaiPhong;
 
-    @Column(name = "SucChua")
+    @Column(name = "suc_chua")
     private Integer sucChua;
 
-    @Column(name = "TrangThai")
-    private Integer trangThai = 0;
+    @Column(name = "trang_thai")
+    private TrangThaiPhong trangThai;
 
     // getters & setters
 }

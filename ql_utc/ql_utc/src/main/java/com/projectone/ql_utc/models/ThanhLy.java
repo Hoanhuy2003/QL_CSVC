@@ -3,31 +3,33 @@ package com.projectone.ql_utc.models;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.math.BigDecimal;
+
 @Entity
 @Getter
 @Setter
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-@Table(name = "thanhly")
+@Table(name = "thanh_ly")
 public class ThanhLy {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "MaTL")
+    @Column(name = "ma_tl")
     private Integer maTL;
 
     @ManyToOne
-    @JoinColumn(name = "MaTB", nullable = false)
+    @JoinColumn(name = "ma_tb", nullable = false)
     private ThietBi thietBi;
 
-    @Column(name = "NgayThanhLy", nullable = false)
+    @Column(name = "ngay_thanh_ly", nullable = false)
     private java.sql.Date ngayThanhLy;
 
-    @Column(name = "LyDo", length = 200)
+    @Column(name = "ly_do", length = 200)
     private String lyDo;
 
-    @Column(name = "GiaTriThuHoi", precision = 18, scale = 2)
-    private Double giaTriThuHoi;
+    @Column(name = "gia_tri_thu_hoi", precision = 18, scale = 2)
+    private BigDecimal giaTriThuHoi;
 
     // getters & setters
 }

@@ -15,24 +15,24 @@ import java.util.List;
 public class LichSuThietBi {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "MaLS")
-    private Integer maLS;
+    @Column(name = "ma_ls")
+    private String maLS;
 
     @ManyToOne
-    @JoinColumn(name = "MaTB", nullable = false)
+    @JoinColumn(name = "ma_tb", nullable = false)
     private ThietBi thietBi;
 
-    @Column(name = "NgayCapNhat", nullable = false)
+    @Column(name = "ngay_cap_nhat", nullable = false)
     private java.sql.Timestamp ngayCapNhat;
 
-    @Column(name = "TinhTrangMoi", nullable = false, length = 30)
+    @Column(name = "tinh_trang_moi", nullable = false, length = 30)
     private String tinhTrangMoi;
 
     @ManyToOne
-    @JoinColumn(name = "NguoiCapNhat")
+    @JoinColumn(name = "nguoi_cap_nhat")
     private NhanVien nhanVien;
 
-    @Column(name = "GhiChu", length = 200)
+    @Column(name = "ghi_chu", length = 200)
     private String ghiChu;
 
     // getters & setters

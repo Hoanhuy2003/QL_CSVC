@@ -1,5 +1,6 @@
 package com.projectone.ql_utc.models;
 
+import com.projectone.ql_utc.enums.VaiTro;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -10,28 +11,27 @@ import lombok.*;
 @AllArgsConstructor
 @NoArgsConstructor
 
-@Table(name = "taikhoan")
+@Table(name = "tai_khoan")
 public class TaiKhoan {
     @Id
-    @Column(name = "TenTaiKhoan", length = 30)
+    @Column(name = "ten_tai_khoan", length = 30)
     private String tenTaiKhoan;
 
-    @Column(name = "MatKhau", nullable = false, length = 100)
+    @Column(name = "mau_khau", nullable = false, length = 100)
     private String matKhau;
 
     @Enumerated(EnumType.STRING)
-    @Column(name = "VaiTro", nullable = false)
+    @Column(name = "vai_tro", nullable = false)
     private VaiTro vaiTro;
 
     @ManyToOne
-    @JoinColumn(name = "MaSV")
+    @JoinColumn(name = "ma_sv")
     private SinhVien sinhVien;
 
     @ManyToOne
-    @JoinColumn(name = "MaNV")
+    @JoinColumn(name = "ma_nv")
     private NhanVien nhanVien;
 
-    public enum VaiTro { Admin, NhanVien, SinhVien }
 
     // getters & setters
 }

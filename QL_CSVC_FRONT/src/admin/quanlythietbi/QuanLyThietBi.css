@@ -1,0 +1,474 @@
+/* QuanLyThietBi.css */
+
+.quan-ly-thiet-bi {
+  padding: 24px 32px;
+  background-color: #f8fafc;
+  min-height: 100vh;
+}
+
+.quan-ly-thiet-bi.dark {
+  background-color: #0f172a;
+}
+
+.container {
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+/* ========== PAGE HEADER ========== */
+.page-header {
+  margin-bottom: 32px;
+}
+
+.page-title {
+  font-size: 24px;
+  font-weight: 600;
+  color: #2563eb;
+  margin: 0;
+}
+
+.quan-ly-thiet-bi.dark .page-title {
+  color: #60a5fa;
+}
+
+/* ========== ACTION TABS ========== */
+.action-tabs {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 32px;
+  background: white;
+  padding: 8px;
+  border-radius: 12px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  border: 1px solid #e2e8f0;
+}
+
+.quan-ly-thiet-bi.dark .action-tabs {
+  background: #1e293b;
+  border-color: #334155;
+}
+
+.action-tab {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 20px;
+  border-radius: 8px;
+  background: transparent;
+  border: none;
+  color: #64748b;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  flex: 1;
+  justify-content: center;
+}
+
+.action-tab:hover {
+  background-color: #f1f5f9;
+  color: #334155;
+}
+
+.action-tab.active {
+  background-color: #f1f5f9;
+  color: #1e293b;
+  font-weight: 600;
+}
+
+.quan-ly-thiet-bi.dark .action-tab {
+  color: #94a3b8;
+}
+
+.quan-ly-thiet-bi.dark .action-tab:hover {
+  background-color: #334155;
+  color: #f1f5f9;
+}
+
+.quan-ly-thiet-bi.dark .action-tab.active {
+  background-color: #334155;
+  color: #f1f5f9;
+}
+
+.action-tab-icon {
+  font-size: 16px;
+}
+
+/* ========== FILTERS SECTION ========== */
+.filters-section {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 24px;
+  flex-wrap: wrap;
+}
+
+.search-box {
+  flex: 1;
+  min-width: 300px;
+  position: relative;
+}
+
+.search-input {
+  width: 100%;
+  padding: 12px 16px 12px 44px;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  font-size: 14px;
+  color: #1e293b;
+  background: white;
+  transition: all 0.2s ease;
+}
+
+.search-input:focus {
+  outline: none;
+  border-color: #3b82f6;
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+}
+
+.search-input::placeholder {
+  color: #94a3b8;
+}
+
+.quan-ly-thiet-bi.dark .search-input {
+  background: #1e293b;
+  border-color: #334155;
+  color: #f1f5f9;
+}
+
+.quan-ly-thiet-bi.dark .search-input::placeholder {
+  color: #64748b;
+}
+
+.search-icon {
+  position: absolute;
+  left: 14px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #94a3b8;
+  font-size: 16px;
+}
+
+.filter-dropdown {
+  min-width: 140px;
+}
+
+.dropdown-select {
+  width: 100%;
+  padding: 12px 16px;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  font-size: 14px;
+  color: #1e293b;
+  background: white;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.dropdown-select:focus {
+  outline: none;
+  border-color: #3b82f6;
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+}
+
+.quan-ly-thiet-bi.dark .dropdown-select {
+  background: #1e293b;
+  border-color: #334155;
+  color: #f1f5f9;
+}
+
+/* ========== DATA TABLE ========== */
+.data-table-container {
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  border: 1px solid #e2e8f0;
+  overflow: hidden;
+}
+
+.quan-ly-thiet-bi.dark .data-table-container {
+  background: #1e293b;
+  border-color: #334155;
+}
+
+.data-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.table-header {
+  background-color: #f8fafc;
+  border-bottom: 1px solid #e2e8f0;
+}
+
+.quan-ly-thiet-bi.dark .table-header {
+  background-color: #334155;
+  border-bottom-color: #475569;
+}
+
+.table-header th {
+  padding: 16px 20px;
+  text-align: left;
+  font-size: 13px;
+  font-weight: 600;
+  color: #64748b;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.quan-ly-thiet-bi.dark .table-header th {
+  color: #94a3b8;
+}
+
+.table-body tr {
+  border-bottom: 1px solid #f1f5f9;
+  transition: background-color 0.2s ease;
+}
+
+.table-body tr:hover {
+  background-color: #f8fafc;
+}
+
+.table-body tr:last-child {
+  border-bottom: none;
+}
+
+.quan-ly-thiet-bi.dark .table-body tr {
+  border-bottom-color: #334155;
+}
+
+.quan-ly-thiet-bi.dark .table-body tr:hover {
+  background-color: #334155;
+}
+
+.table-body td {
+  padding: 16px 20px;
+  font-size: 14px;
+  color: #1e293b;
+  vertical-align: middle;
+}
+
+.quan-ly-thiet-bi.dark .table-body td {
+  color: #f1f5f9;
+}
+
+/* ========== STATUS BADGES ========== */
+.status-badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 6px 12px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.status-badge.dang-su-dung {
+  background-color: #1f2937;
+  color: white;
+}
+
+.status-badge.dang-muon {
+  background-color: #dbeafe;
+  color: #1d4ed8;
+}
+
+.status-badge.dang-bao-tri {
+  background-color: #fef3c7;
+  color: #d97706;
+}
+
+.status-badge.da-thanh-ly {
+  background-color: #fecaca;
+  color: #dc2626;
+}
+
+.quan-ly-thiet-bi.dark .status-badge.dang-su-dung {
+  background-color: #374151;
+  color: #d1d5db;
+}
+
+.quan-ly-thiet-bi.dark .status-badge.dang-muon {
+  background-color: #1e3a8a;
+  color: #93c5fd;
+}
+
+.quan-ly-thiet-bi.dark .status-badge.dang-bao-tri {
+  background-color: #78350f;
+  color: #fcd34d;
+}
+
+.quan-ly-thiet-bi.dark .status-badge.da-thanh-ly {
+  background-color: #7f1d1d;
+  color: #fca5a5;
+}
+
+/* ========== ACTION BUTTONS ========== */
+.action-buttons {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.action-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-size: 16px;
+}
+
+.action-btn.view {
+  background-color: #f1f5f9;
+  color: #64748b;
+}
+
+.action-btn.view:hover {
+  background-color: #e2e8f0;
+  color: #334155;
+}
+
+.action-btn.edit {
+  background-color: #f1f5f9;
+  color: #64748b;
+}
+
+.action-btn.edit:hover {
+  background-color: #e2e8f0;
+  color: #334155;
+}
+
+.action-btn.delete {
+  background-color: #fef2f2;
+  color: #dc2626;
+}
+
+.action-btn.delete:hover {
+  background-color: #fee2e2;
+  color: #b91c1c;
+}
+
+.quan-ly-thiet-bi.dark .action-btn.view,
+.quan-ly-thiet-bi.dark .action-btn.edit {
+  background-color: #374151;
+  color: #94a3b8;
+}
+
+.quan-ly-thiet-bi.dark .action-btn.view:hover,
+.quan-ly-thiet-bi.dark .action-btn.edit:hover {
+  background-color: #4b5563;
+  color: #d1d5db;
+}
+
+.quan-ly-thiet-bi.dark .action-btn.delete {
+  background-color: #7f1d1d;
+  color: #fca5a5;
+}
+
+.quan-ly-thiet-bi.dark .action-btn.delete:hover {
+  background-color: #991b1b;
+  color: #f87171;
+}
+
+/* ========== DEVICE ID COLUMN ========== */
+.device-id {
+  font-weight: 600;
+  color: #1e293b;
+}
+
+.quan-ly-thiet-bi.dark .device-id {
+  color: #f1f5f9;
+}
+
+/* ========== QUANTITY COLUMN ========== */
+.quantity {
+  font-weight: 600;
+  color: #059669;
+}
+
+.quantity.zero {
+  color: #dc2626;
+}
+
+.quan-ly-thiet-bi.dark .quantity {
+  color: #10b981;
+}
+
+.quan-ly-thiet-bi.dark .quantity.zero {
+  color: #f87171;
+}
+
+/* ========== RESPONSIVE ========== */
+@media (max-width: 1024px) {
+  .filters-section {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  
+  .search-box {
+    min-width: auto;
+  }
+  
+  .filter-dropdown {
+    min-width: auto;
+  }
+  
+  .action-tabs {
+    flex-wrap: wrap;
+  }
+  
+  .action-tab {
+    flex: none;
+    min-width: 120px;
+  }
+}
+
+@media (max-width: 768px) {
+  .quan-ly-thiet-bi {
+    padding: 16px 20px;
+  }
+  
+  .data-table-container {
+    overflow-x: auto;
+  }
+  
+  .data-table {
+    min-width: 800px;
+  }
+  
+  .table-header th,
+  .table-body td {
+    padding: 12px 16px;
+  }
+  
+  .action-buttons {
+    gap: 4px;
+  }
+  
+  .action-btn {
+    width: 32px;
+    height: 32px;
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 640px) {
+  .page-title {
+    font-size: 20px;
+  }
+  
+  .action-tabs {
+    flex-direction: column;
+    gap: 4px;
+  }
+  
+  .action-tab {
+    justify-content: flex-start;
+  }
+}

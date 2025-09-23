@@ -1,5 +1,6 @@
 package com.projectone.ql_utc.models;
 
+import com.projectone.ql_utc.enums.TrangThai;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -9,25 +10,25 @@ import lombok.*;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-@Table(name = "ctphieumuon")
+@Table(name = "ct_phieu_muon")
 @IdClass(CTPhieuMuonId.class)
 public class CTPhieuMuon {
     @Id
     @ManyToOne
-    @JoinColumn(name = "MaPM")
+    @JoinColumn(name = "ma_pm")
     private PhieuMuon phieuMuon;
 
     @Id
     @ManyToOne
-    @JoinColumn(name = "MaTB")
+    @JoinColumn(name = "ma_tb")
     private ThietBi thietBi;
 
     @ManyToOne
-    @JoinColumn(name = "MaSV")
+    @JoinColumn(name = "ma_sv")
     private SinhVien sinhVien;
 
-    @Column(name = "TrangThai")
-    private Integer trangThai = 3;
+    @Column(name = "trang_thai")
+    private TrangThai trangThai ;
 
     // getters & setters
 }

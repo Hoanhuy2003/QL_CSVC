@@ -1,5 +1,6 @@
-package com.projectone.ql_utc.response;
+package com.projectone.ql_utc.responses;
 
+import com.projectone.ql_utc.enums.TinhTrangThietBi;
 import com.projectone.ql_utc.models.ThietBi;
 import lombok.*;
 
@@ -17,7 +18,7 @@ public class ThietBiResponse {
     private String tenTB;
     private String loai;
     private Date ngayNhap;
-    private String tinhTrang;
+    private TinhTrangThietBi tinhTrang;
     private BigDecimal giaTri;
 
     public static  ThietBiResponse fromThietBi (ThietBi thietBi){

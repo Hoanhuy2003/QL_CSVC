@@ -10,23 +10,23 @@ import lombok.*;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-@Table(name = "loptinchi")
+@Table(name = "lop_tin_chi")
 public class LopTinChi {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "MaLTC")
-    private Integer maLTC;
+    @Column(name = "ma_ltc")
+    private String maLTC;
 
-    @Column(name = "NienKhoa", nullable = false, length = 15)
+    @Column(name = "nien_khoa", nullable = false, length = 15)
     private String nienKhoa;
 
-    @Column(name = "HocKy", nullable = false)
+    @Column(name = "hoc_ky", nullable = false)
     private Byte hocKy;
 
-    @Column(name = "MonHoc", nullable = false, length = 50)
+    @Column(name = "mon_hoc", nullable = false, length = 50)
     private String monHoc;
 
-    @Column(name = "Nhom", nullable = false)
+    @Column(name = "nhom", nullable = false)
     private Byte nhom;
 
     // getters & setters
