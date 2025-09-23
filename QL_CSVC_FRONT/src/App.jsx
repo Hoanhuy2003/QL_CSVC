@@ -4,6 +4,8 @@ import HeaderAdmin from "./admin/headeradmin/HeaderAdmin";
 import DashboardAdmin from "./admin/dashboardadmin/DashboardAdmin";
 import QuanLyTaiKhoan from "./admin/quanlytaikhoan/QuanLyTaiKhoan";
 import QuanLyThietBi from "./admin/quanlythietbi/QuanLyThietBi";
+import QuanLyLichHoc from "./admin/quanlylichhoc/QuanLyLichHoc";
+import QuanLyPhongHoc from "./admin/quanlyphonghoc/QuanLyPhongHoc";
 
 function App() {
   return (
@@ -23,6 +25,8 @@ function App() {
           {/* Ví dụ sau này có thêm */}
           <Route path="/admin/users" element={<QuanLyTaiKhoan />} />
           <Route path="/admin/devices" element={<QuanLyThietBi />} />
+          <Route path="/admin/schedule" element={<QuanLyLichHoc />} />
+          <Route path="/admin/rooms" element={<QuanLyPhongHoc />} />
         </Routes>
       </div>
     </Router>
