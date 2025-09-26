@@ -14,7 +14,7 @@ import java.util.List;
 @Table(name = "lich_su_tb")
 public class LichSuThietBi {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+
     @Column(name = "ma_ls")
     private String maLS;
 

@@ -13,7 +13,6 @@ import lombok.*;
 @Table(name = "lop_tin_chi")
 public class LopTinChi {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "ma_ltc")
     private String maLTC;
 

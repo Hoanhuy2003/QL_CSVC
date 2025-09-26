@@ -1,5 +1,6 @@
 import React from 'react';
 import './DashboardAdmin.css';
+import { Link } from 'react-router-dom'; 
 
 const DashboardAdmin = () => {
   return (
@@ -100,14 +101,18 @@ const DashboardAdmin = () => {
             <p className="section-subtitle">Các tác vụ thường dùng</p>
 
             <div className="quick-actions">
-              <div className="action-item">
+            <Link to="/admin/users" className="action-item">
+             <div className="action-item">
                 <div className="action-icon user-manage">👤</div>
                 <div className="action-content">
                   <div className="action-title">Quản lý người dùng</div>
                   <div className="action-subtitle">Thêm, sửa tài khoản</div>
                 </div>
               </div>
+            
+            </Link>
 
+            <Link to="/admin/devices" className="action-item">
               <div className="action-item">
                 <div className="action-icon device-manage">💻</div>
                 <div className="action-content">
@@ -115,6 +120,19 @@ const DashboardAdmin = () => {
                   <div className="action-subtitle">Mua mới, bảo trì</div>
                 </div>
               </div>
+            </Link>
+
+            <Link to="/admin/rooms" className="action-item">
+              <div className="action-item">
+                <div className="action-icon room-manage">🏢</div>
+                <div className="action-content">
+                  <div className="action-title">Quản lý phòng học</div>
+                  <div className="action-subtitle">Thêm, sửa phòng học</div>
+                </div>
+              </div>
+            </Link>
+
+            <Link to="/admin/schedule" className="action-item">
 
               <div className="action-item">
                 <div className="action-icon schedule-manage">📋</div>
@@ -123,14 +141,19 @@ const DashboardAdmin = () => {
                   <div className="action-subtitle">Thêm lịch mới</div>
                 </div>
               </div>
+            </Link>
+            
 
-              <div className="action-item">
+            <Link to="/admin/reports" className="action-item">
+             <div className="action-item">
                 <div className="action-icon report">📊</div>
                 <div className="action-content">
                   <div className="action-title">Xem báo cáo</div>
                   <div className="action-subtitle">Thống kê, phân tích</div>
                 </div>
               </div>
+            </Link>
+              
             </div>
 
             {/* System Status */}

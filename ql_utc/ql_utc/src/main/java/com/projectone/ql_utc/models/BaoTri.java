@@ -14,7 +14,6 @@ import java.math.BigDecimal;
 @Table(name = "bao_tri")
 public class BaoTri {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "ma_bt")
     private String maBT;
 

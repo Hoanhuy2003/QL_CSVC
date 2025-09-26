@@ -6,15 +6,18 @@ import com.projectone.ql_utc.iservices.IThietBiService;
 import com.projectone.ql_utc.models.ThietBi;
 import com.projectone.ql_utc.responses.ThietBiResponse;
 import jakarta.validation.Valid;
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/api/thietbi")
+@RequiredArgsConstructor
 public class ThietBiController {
-    private IThietBiService thietBiService;
+    private final IThietBiService thietBiService;
 
 
     @PostMapping("")
@@ -28,9 +31,38 @@ public class ThietBiController {
         }
     }
 
-    @GetMapping
-    public ResponseEntity<List<ThietBi>> getAllThietBi() {
-        return ResponseEntity.ok(thietBiService.getAllThietBi());
+    @GetMapping("")
+    public ResponseEntity<List<ThietBiResponse>> getAllThietBi() {
+        List<ThietBiResponse> responses = thietBiService.getAllThietBi()
+                .stream()
+                .map(ThietBiResponse::fromThietBi)
+                .collect(Collectors.toList());
+        return ResponseEntity.ok(responses);
     }
+    @GetMapping("/{maTB}")
+    public ResponseEntity<?> getThietBiById(@PathVariable String maTB){
+        try {
+            ThietBi thietBi = thietBiService.getThietBiById(maTB);
+            return ResponseEntity.ok(ThietBiResponse.fromThietBi(thietBi));
+        } catch (DataNotFoundException e){
+            return ResponseEntity.badRequest().body(e.getMessage());
+        }
+    }
+
+    @DeleteMapping("/{maTB}")
+    public ResponseEntity<?> deleteThietBi(@PathVariable String maTB){
+        try {
+            thietBiService.deleteThietBi(maTB);
+            return ResponseEntity.ok("Xoa thanh cong");
+
+        }catch (DataNotFoundException e){
+            return ResponseEntity.badRequest().body(e.getMessage());
+        }
+    }
+
+
+
+
+
 
 }

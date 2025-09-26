@@ -15,7 +15,6 @@ import java.util.Date;
 @Table(name = "phieu_muon")
 public class PhieuMuon {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "ma_pm")
     private String maPM;
 

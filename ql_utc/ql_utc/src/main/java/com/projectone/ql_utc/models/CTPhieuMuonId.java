@@ -5,7 +5,7 @@ import java.util.Objects;
 
 
 public class CTPhieuMuonId implements Serializable {
-    private Integer phieuMuon;
+    private String phieuMuon;
     private String thietBi;
 
     // equals & hashCode

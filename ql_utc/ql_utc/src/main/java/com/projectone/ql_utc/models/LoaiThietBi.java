@@ -19,9 +19,9 @@ public class LoaiThietBi {
 
     @Column(name = "ten_loai", nullable = false, length = 50)
     private String tenLoai;
-
-    @OneToMany(mappedBy = "loai")
-    private List<ThietBi> thietBis;
+//
+//    @OneToMany(mappedBy = "loai")
+//    private List<ThietBi> thietBi;
 
     // getters & setters
 }

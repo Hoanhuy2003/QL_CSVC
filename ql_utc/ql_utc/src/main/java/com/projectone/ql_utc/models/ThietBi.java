@@ -1,5 +1,6 @@
 package com.projectone.ql_utc.models;
 
+import com.projectone.ql_utc.converter.TinhTrangThietBiConverter;
 import com.projectone.ql_utc.enums.TinhTrangThietBi;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Table;
@@ -32,6 +33,7 @@ public class ThietBi {
     private Date ngayNhap;
 
     @Column(name = "tinh_trang", length = 30)
+    @Convert(converter = TinhTrangThietBiConverter.class)
     private TinhTrangThietBi tinhTrang;
 
     @Column(name = "gia_tri", precision = 18, scale = 2)

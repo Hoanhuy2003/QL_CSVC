@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { Search, Plus, Edit,Trash2 } from 'lucide-react';
 import './QuanLyThietBi.css';
 
 const QuanLyThietBi = ({ darkMode = false }) => {
@@ -10,6 +11,10 @@ const QuanLyThietBi = ({ darkMode = false }) => {
   const [filteredDevices, setFilteredDevices] = useState([]);
   const [purchaseHistory, setPurchaseHistory] = useState([]);
   const [isSubmitting, setIsSubmitting] = useState(false);
+  
+  // States cho modal SỬA
+  const [isEditModalOpen, setIsEditModalOpen] = useState(false); 
+  const [currentDevice, setCurrentDevice] = useState(null); 
 
   // Form data cho mua mới
   const [formData, setFormData] = useState({
@@ -105,7 +110,6 @@ const QuanLyThietBi = ({ darkMode = false }) => {
       price: 12000000
     }
   ]
-  {/*Thanh lý*/}
   const liquidationHistory = [
     {
       id: 'TB005',
@@ -114,7 +118,6 @@ const QuanLyThietBi = ({ darkMode = false }) => {
       priceLiquidation: 3000000,
       reason: 'Hỏng nặng, không thể sửa chữa'
     },
-
     {
       id: 'TB006',
       name: 'Camera Canon EOS 80D',
@@ -122,32 +125,14 @@ const QuanLyThietBi = ({ darkMode = false }) => {
       priceLiquidation: 15000000,
       reason: 'Lỗi phần cứng, chi phí sửa chữa cao'
     }
-
-
   ]
 
   // Action tabs configuration
   const actionTabs = [
-    {
-      id: 'danh-sach',
-      label: 'Danh sách thiết bị',
-      icon: '📋'
-    },
-    {
-      id: 'mua-moi',
-      label: 'Mua mới',
-      icon: '🛒'
-    },
-    {
-      id: 'bao-tri',
-      label: 'Bảo trì',
-      icon: '🔧'
-    },
-    {
-      id: 'thanh-ly',
-      label: 'Thanh lý',
-      icon: '🗑️'
-    }
+    { id: 'danh-sach', label: 'Danh sách thiết bị', icon: '📋' },
+    { id: 'mua-moi', label: 'Mua mới', icon: '🛒' },
+    { id: 'bao-tri', label: 'Bảo trì', icon: '🔧' },
+    { id: 'thanh-ly', label: 'Thanh lý', icon: '🗑️' }
   ];
 
   // Device types for filter
@@ -176,7 +161,6 @@ const QuanLyThietBi = ({ darkMode = false }) => {
     setFilteredDevices(mockDevices);
     setPurchaseHistory(mockHistory);
     
-    // Auto-generate device ID for form
     const nextId = `TB${String(mockDevices.length + 1).padStart(3, '0')}`;
     setFormData(prev => ({ ...prev, deviceId: nextId }));
   }, []);
@@ -184,16 +168,12 @@ const QuanLyThietBi = ({ darkMode = false }) => {
   // Filter devices based on search and filters
   useEffect(() => {
     let filtered = devices;
-
-    // Search filter
     if (searchTerm) {
       filtered = filtered.filter(device =>
         device.id.toLowerCase().includes(searchTerm.toLowerCase()) ||
         device.name.toLowerCase().includes(searchTerm.toLowerCase())
       );
     }
-
-    // Device type filter
     if (deviceTypeFilter !== 'tat-ca') {
       filtered = filtered.filter(device => {
         const typeMap = {
@@ -207,12 +187,9 @@ const QuanLyThietBi = ({ darkMode = false }) => {
         return device.type === typeMap[deviceTypeFilter];
       });
     }
-
-    // Status filter
     if (statusFilter !== 'tat-ca') {
       filtered = filtered.filter(device => device.status === statusFilter);
     }
-
     setFilteredDevices(filtered);
   }, [searchTerm, deviceTypeFilter, statusFilter, devices]);
 
@@ -229,19 +206,13 @@ const QuanLyThietBi = ({ darkMode = false }) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setIsSubmitting(true);
-
     try {
-      // Validate form
       if (!formData.deviceName || !formData.deviceType || !formData.purchaseDate || 
           !formData.supplier || !formData.price) {
         alert('Vui lòng điền đầy đủ thông tin!');
         return;
       }
-
-      // Simulate API call
       await new Promise(resolve => setTimeout(resolve, 1000));
-
-      // Create new purchase record
       const newPurchase = {
         id: formData.deviceId,
         name: formData.deviceName,
@@ -250,11 +221,7 @@ const QuanLyThietBi = ({ darkMode = false }) => {
         price: parseInt(formData.price),
         supplier: formData.supplier
       };
-
-      // Add to history
       setPurchaseHistory(prev => [newPurchase, ...prev]);
-
-      // Create new device entry
       const deviceTypeMap = {
         'thiet-bi-chieu': 'Thiết bị chiếu',
         'may-tinh': 'Máy tính',
@@ -263,7 +230,6 @@ const QuanLyThietBi = ({ darkMode = false }) => {
         'thiet-bi-giang-day': 'Thiết bị giảng dạy',
         'thiet-bi-quay-phim': 'Thiết bị quay phim'
       };
-
       const newDevice = {
         id: formData.deviceId,
         name: formData.deviceName,
@@ -271,11 +237,7 @@ const QuanLyThietBi = ({ darkMode = false }) => {
         status: 'dang-su-dung',
         quantity: parseInt(formData.quantity)
       };
-
-      // Add to devices list
       setDevices(prev => [...prev, newDevice]);
-
-      // Reset form
       const nextId = `TB${String(devices.length + 2).padStart(3, '0')}`;
       setFormData({
         deviceId: nextId,
@@ -286,7 +248,6 @@ const QuanLyThietBi = ({ darkMode = false }) => {
         supplier: '',
         price: ''
       });
-
       alert('Thêm thông tin mua mới thành công!');
     } catch (error) {
       alert('Có lỗi xảy ra, vui lòng thử lại!');
@@ -316,22 +277,64 @@ const QuanLyThietBi = ({ darkMode = false }) => {
     };
     return statusMap[status] || status;
   };
-
-  // Handle actions
-  const handleView = (deviceId) => {
-    console.log('View device:', deviceId);
-    // Implement view logic
+  
+  // Lấy class CSS tương ứng với status
+  const getStatusClass = (status) => {
+    switch(status) {
+      case 'dang-su-dung':
+        return 'status-in-use';
+      case 'dang-muon':
+        return 'status-on-loan';
+      case 'dang-bao-tri':
+        return 'status-under-maintenance';
+      case 'da-thanh-ly':
+        return 'status-liquidated';
+      default:
+        return '';
+    }
   };
 
-  const handleEdit = (deviceId) => {
-    console.log('Edit device:', deviceId);
-    // Implement edit logic
+  const handleView = (deviceId) => {
+    console.log('View device:', deviceId);
+  };
+  
+  // Hàm mở modal chỉnh sửa
+  const handleOpenEditModal = (deviceId) => {
+    const deviceToEdit = devices.find(d => d.id === deviceId);
+    if (deviceToEdit) {
+      setCurrentDevice(deviceToEdit);
+      setIsEditModalOpen(true);
+    }
+  };
+
+  // Hàm đóng modal chỉnh sửa
+  const handleCloseEditModal = () => {
+    setIsEditModalOpen(false);
+    setCurrentDevice(null);
+  };
+
+  // Xử lý thay đổi input trong modal chỉnh sửa
+  const handleEditInputChange = (e) => {
+    const { name, value } = e.target;
+    setCurrentDevice(prev => ({
+      ...prev,
+      [name]: value
+    }));
+  };
+
+  // Xử lý khi submit form chỉnh sửa
+  const handleEditSubmit = (e) => {
+    e.preventDefault();
+    const updatedDevices = devices.map(device =>
+      device.id === currentDevice.id ? currentDevice : device
+    );
+    setDevices(updatedDevices);
+    handleCloseEditModal();
   };
 
   const handleDelete = (deviceId) => {
     if (window.confirm('Bạn có chắc chắn muốn xóa thiết bị này?')) {
       console.log('Delete device:', deviceId);
-      // Implement delete logic
       setDevices(devices.filter(device => device.id !== deviceId));
     }
   };
@@ -370,7 +373,6 @@ const QuanLyThietBi = ({ darkMode = false }) => {
               onChange={(e) => setSearchTerm(e.target.value)}
             />
           </div>
-
           <div className="filter-dropdown">
             <select
               className="dropdown-select"
@@ -384,7 +386,6 @@ const QuanLyThietBi = ({ darkMode = false }) => {
               ))}
             </select>
           </div>
-
           <div className="filter-dropdown">
             <select
               className="dropdown-select"
@@ -424,7 +425,7 @@ const QuanLyThietBi = ({ darkMode = false }) => {
                       <td>{device.name}</td>
                       <td>{device.type}</td>
                       <td>
-                        <span className={`status-badge ${device.status}`}>
+                        <span className={`status-badge ${getStatusClass(device.status)}`}>
                           {getStatusLabel(device.status)}
                         </span>
                       </td>
@@ -445,7 +446,7 @@ const QuanLyThietBi = ({ darkMode = false }) => {
                           <button
                             className="action-btn edit"
                             title="Chỉnh sửa"
-                            onClick={() => handleEdit(device.id)}
+                            onClick={() => handleOpenEditModal(device.id)}
                           >
                             ✏️
                           </button>
@@ -474,13 +475,11 @@ const QuanLyThietBi = ({ darkMode = false }) => {
           </div>
         )}
 
-        {/* Other Tab Contents */}
+        {/* Other Tab Contents (Mua mới, Bảo trì, Thanh lý) */}
         {activeTab === 'mua-moi' && (
           <div className="mua-moi-section">
-            {/* Form Panel */}
             <div className="form-panel">
               <h2 className="form-title">Thêm thông tin mua mới</h2>
-              
               <form onSubmit={handleSubmit}>
                 <div className="form-group">
                   <label className="form-label">Mã thiết bị</label>
@@ -492,7 +491,6 @@ const QuanLyThietBi = ({ darkMode = false }) => {
                     readOnly
                   />
                 </div>
-
                 <div className="form-group">
                   <label className="form-label">Tên thiết bị</label>
                   <input
@@ -505,7 +503,6 @@ const QuanLyThietBi = ({ darkMode = false }) => {
                     required
                   />
                 </div>
-
                 <div className="form-group">
                   <label className="form-label">Loại thiết bị</label>
                   <select
@@ -523,7 +520,6 @@ const QuanLyThietBi = ({ darkMode = false }) => {
                     ))}
                   </select>
                 </div>
-
                 <div className="form-group">
                   <label className="form-label">Ngày mua</label>
                   <input
@@ -535,7 +531,6 @@ const QuanLyThietBi = ({ darkMode = false }) => {
                     required
                   />
                 </div>
-
                 <div className="form-group">
                   <label className="form-label">Số lượng</label>
                   <input
@@ -548,7 +543,6 @@ const QuanLyThietBi = ({ darkMode = false }) => {
                     required
                   />
                 </div>
-
                 <div className="form-group">
                   <label className="form-label">Nhà cung cấp</label>
                   <input
@@ -561,7 +555,6 @@ const QuanLyThietBi = ({ darkMode = false }) => {
                     required
                   />
                 </div>
-
                 <div className="form-group">
                   <label className="form-label">Đơn giá (VND)</label>
                   <div className="price-input-wrapper">
@@ -578,7 +571,6 @@ const QuanLyThietBi = ({ darkMode = false }) => {
                     <span className="currency-suffix">VND</span>
                   </div>
                 </div>
-
                 <button 
                   type="submit" 
                   className="submit-button"
@@ -588,11 +580,8 @@ const QuanLyThietBi = ({ darkMode = false }) => {
                 </button>
               </form>
             </div>
-
-            {/* History Panel */}
             <div className="history-panel">
               <h2 className="history-title">Lịch sử mua mới gần đây</h2>
-              
               <div className="history-list">
                 {purchaseHistory.length > 0 ? (
                   purchaseHistory.map((item) => (
@@ -601,25 +590,21 @@ const QuanLyThietBi = ({ darkMode = false }) => {
                         <h3 className="item-name">{item.name}</h3>
                         <span className="item-code">{item.id}</span>
                       </div>
-                      
                       <div className="item-details">
                         <div className="item-detail">
                           <span className="detail-label">Ngày mua:</span>
                           <span className="detail-value">{formatDate(item.purchaseDate)}</span>
                         </div>
-                        
                         <div className="item-detail">
                           <span className="detail-label">Số lượng:</span>
                           <span className="quantity-badge">{item.quantity}</span>
                         </div>
-                        
                         <div className="item-detail">
                           <span className="detail-label">Đơn giá:</span>
                           <span className="detail-value price-value">
                             {formatPrice(item.price)} VND
                           </span>
                         </div>
-                        
                         <div className="item-detail">
                           <span className="detail-label">Nhà cung cấp:</span>
                           <span className="detail-value">{item.supplier}</span>
@@ -641,14 +626,11 @@ const QuanLyThietBi = ({ darkMode = false }) => {
           </div>
         )}
 
-        
-
+        {/* Các tab Bảo trì và Thanh lý tương tự */}
         {activeTab === 'bao-tri' && (
-           <div className="bao-tri-section">
-            {/* Form Panel */}
+          <div className="bao-tri-section">
             <div className="form-panel">
               <h2 className="form-title">Thêm thông tin bảo trì</h2>
-              
               <form onSubmit={handleSubmit}>
                 <div className="form-group">
                   <label className="form-label">Mã thiết bị</label>
@@ -660,9 +642,6 @@ const QuanLyThietBi = ({ darkMode = false }) => {
                     readOnly
                   />
                 </div>
-
-                
-
                 <div className="form-group">
                   <label className="form-label">Ngày bảo trì</label>
                   <input
@@ -674,7 +653,6 @@ const QuanLyThietBi = ({ darkMode = false }) => {
                     required
                   />
                 </div>
-
                 <div className="form-group">
                   <label className="form-label">Nội dung bảo trì</label>
                   <input
@@ -687,7 +665,6 @@ const QuanLyThietBi = ({ darkMode = false }) => {
                     required
                   />
                 </div>
-
                 <div className="form-group">
                   <label className="form-label">Người thực hiện</label>
                   <input
@@ -700,7 +677,6 @@ const QuanLyThietBi = ({ darkMode = false }) => {
                     required
                   />
                 </div>
-
                 <div className="form-group">
                   <label className="form-label">Chi phí (VND)</label>
                   <div className="price-input-wrapper">
@@ -717,7 +693,6 @@ const QuanLyThietBi = ({ darkMode = false }) => {
                     <span className="currency-suffix">VND</span>
                   </div>
                 </div>
-
                 <button 
                   type="submit" 
                   className="submit-button"
@@ -727,11 +702,8 @@ const QuanLyThietBi = ({ darkMode = false }) => {
                 </button>
               </form>
             </div>
-
-            {/* History Panel */}
             <div className="history-panel">
               <h2 className="history-title">Lịch sử bảo trì gần đây</h2>
-              
               <div className="history-list">
                 {mainHistory.length > 0 ? (
                   mainHistory.map((item) => (
@@ -740,7 +712,6 @@ const QuanLyThietBi = ({ darkMode = false }) => {
                         <h3 className="item-name">{item.name}</h3>
                         <span className="item-code">{item.id}</span>
                       </div>
-                      
                       <div className="item-details">
                         <div className="item-detail">
                           <span className="detail-label">Ngày bảo trì:</span>
@@ -750,16 +721,12 @@ const QuanLyThietBi = ({ darkMode = false }) => {
                           <span className="detail-label">Người thực hiện:</span>
                           <span className="detail-value">{item.people}</span>
                         </div>
-                        
-                      
-                        
                         <div className="item-detail">
                           <span className="detail-label">Chi phí:</span>
                           <span className="detail-value price-value">
                             {formatPrice(item.price)} VND
                           </span>
                         </div>
-                        
                         <div className="item-detail">
                           <span className="detail-label">Nhà cung cấp:</span>
                           <span className="detail-value">{item.supplier}</span>
@@ -780,13 +747,10 @@ const QuanLyThietBi = ({ darkMode = false }) => {
             </div>
           </div>
         )}
-    {/* Thanh lý tab content - Placeholder */}
         {activeTab === 'thanh-ly' && (
           <div className="thanh-ly-section">
-            {/* Form Panel */}
             <div className="form-panel">
               <h2 className="form-title">Thêm thông tin thanh lý</h2>
-              
               <form onSubmit={handleSubmit}>
                 <div className="form-group">
                   <label className="form-label">Mã thiết bị</label>
@@ -798,9 +762,6 @@ const QuanLyThietBi = ({ darkMode = false }) => {
                     readOnly
                   />
                 </div>
-
-                
-
                 <div className="form-group">
                   <label className="form-label">Ngày thanh lý</label>
                   <input
@@ -812,7 +773,6 @@ const QuanLyThietBi = ({ darkMode = false }) => {
                     required
                   />
                 </div>
-
                 <div className="form-group">
                   <label className="form-label">Lý do thanh lý</label>
                   <input
@@ -825,8 +785,6 @@ const QuanLyThietBi = ({ darkMode = false }) => {
                     required
                   />
                 </div>
-
-
                 <div className="form-group">
                   <label className="form-label">Giá trị thu hồi (VND)</label>
                   <div className="price-input-wrapper">
@@ -843,7 +801,6 @@ const QuanLyThietBi = ({ darkMode = false }) => {
                     <span className="currency-suffix">VND</span>
                   </div>
                 </div>
-
                 <button 
                   type="submit" 
                   className="submit-button"
@@ -853,11 +810,8 @@ const QuanLyThietBi = ({ darkMode = false }) => {
                 </button>
               </form>
             </div>
-
-            {/* History Panel */}
             <div className="history-panel">
               <h2 className="history-title">Lịch sử bảo trì gần đây</h2>
-              
               <div className="history-list">
                 {liquidationHistory.length > 0 ? (
                   liquidationHistory.map((item) => (
@@ -866,29 +820,21 @@ const QuanLyThietBi = ({ darkMode = false }) => {
                         <h3 className="item-name">{item.name}</h3>
                         <span className="item-code">{item.id}</span>
                       </div>
-                      
                       <div className="item-details">
                         <div className="item-detail">
                           <span className="detail-label">Ngày thanh lý:</span>
                           <span className="detail-value">{formatDate(item.liquidationDate)}</span>
                         </div>
-                       
-                        
-                      
-                        
                         <div className="item-detail">
                           <span className="detail-label">Giá trị thu hồi:</span>
                           <span className="detail-value price-value">
                             {formatPrice(item.priceLiquidation)} VND
                           </span>
                         </div>
-
-                         <div className="item-detail">
+                        <div className="item-detail">
                           <span className="detail-label">Lý do thanh lý:</span>
                           <span className="detail-value">{item.reason}</span>
                         </div>
-                        
-                       
                       </div>
                     </div>
                   ))
@@ -906,6 +852,102 @@ const QuanLyThietBi = ({ darkMode = false }) => {
           </div>
         )}
       </div>
+
+      {/* MODAL CHỈNH SỬA THIẾT BỊ */}
+      {isEditModalOpen && currentDevice && (
+        <div className="modal-overlay">
+          <div className="modal-container">
+            <div className="modal-header">
+              <h2>Sửa thông tin thiết bị</h2>
+              <button className="close-btn" onClick={handleCloseEditModal}>
+                &times;
+              </button>
+            </div>
+            <p className="modal-subtitle">
+              Điền thông tin để cập nhật thiết bị
+            </p>
+
+            <form onSubmit={handleEditSubmit} className="modal-form">
+              <div className="form-row">
+                <div className="form-group">
+                  <label htmlFor="deviceId">Mã thiết bị</label>
+                  <input
+                    type="text"
+                    id="deviceId"
+                    name="id"
+                    value={currentDevice.id}
+                    readOnly
+                    className="read-only-input"
+                  />
+                </div>
+                <div className="form-group">
+                  <label htmlFor="deviceName">Tên thiết bị *</label>
+                  <input
+                    type="text"
+                    id="deviceName"
+                    name="name"
+                    value={currentDevice.name || ''}
+                    onChange={handleEditInputChange}
+                    placeholder="Tên thiết bị"
+                  />
+                </div>
+              </div>
+
+              <div className="form-row">
+                <div className="form-group">
+                  <label htmlFor="deviceType">Loại thiết bị *</label>
+                  <select
+                    id="deviceType"
+                    name="type"
+                    value={currentDevice.type || ''}
+                    onChange={handleEditInputChange}
+                  >
+                    {deviceTypes.slice(1).map(type => (
+                      <option key={type.value} value={type.label}>{type.label}</option>
+                    ))}
+                  </select>
+                </div>
+                <div className="form-group">
+                  <label htmlFor="status">Tình trạng *</label>
+                  <select
+                    id="status"
+                    name="status"
+                    value={currentDevice.status || ''}
+                    onChange={handleEditInputChange}
+                  >
+                    {statusOptions.slice(1).map(status => (
+                      <option key={status.value} value={status.value}>{status.label}</option>
+                    ))}
+                  </select>
+                </div>
+              </div>
+              
+              <div className="form-row">
+                <div className="form-group">
+                  <label htmlFor="quantity">Số lượng tồn</label>
+                  <input
+                    type="number"
+                    id="quantity"
+                    name="quantity"
+                    value={currentDevice.quantity || ''}
+                    onChange={handleEditInputChange}
+                    min="0"
+                  />
+                </div>
+              </div>
+
+              <div className="modal-actions">
+                <button type="button" className="cancel-btn" onClick={handleCloseEditModal}>
+                  Hủy
+                </button>
+                <button type="submit" className="add-btn">
+                  Cập nhật
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      )}
     </div>
   );
 };

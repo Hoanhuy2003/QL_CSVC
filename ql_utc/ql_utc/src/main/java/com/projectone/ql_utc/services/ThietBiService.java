@@ -25,6 +25,7 @@ public class ThietBiService implements IThietBiService {
         LoaiThietBi loaiThietBi = loaiThietBiRepository.findById(thietBiDTO.getMaLoai())
                 .orElseThrow(()-> new DataNotFoundException("Không có loại này"));
         ThietBi thietBi = ThietBi.builder()
+                .maTB(thietBiDTO.getMaTB())
                 .tenTB(thietBiDTO.getTenTB())
                 .loai(loaiThietBi)
                 .ngayNhap(thietBiDTO.getNgayNhap())
@@ -37,5 +38,33 @@ public class ThietBiService implements IThietBiService {
     @Override
     public List<ThietBi> getAllThietBi() {
         return thietBiRepository.findAll();
+    }
+
+    @Override
+    public ThietBi getThietBiById(String maTB) throws DataNotFoundException {
+        return thietBiRepository.findById(maTB)
+                .orElseThrow(() -> new DataNotFoundException("Không tìm thấy sản phẩm có max: "+ maTB));
+    }
+
+    @Override
+    public ThietBi updateThietBi(String maTB, ThietBiDTO thietBiDTO) throws DataNotFoundException {
+        ThietBi existing = getThietBiById(maTB);
+
+        LoaiThietBi loaiThietBi = loaiThietBiRepository.findById(thietBiDTO.getMaLoai())
+                .orElseThrow(() -> new DataNotFoundException("Không tìm thấy loại thieets bị này"));
+        existing.setTenTB(thietBiDTO.getTenTB());
+        existing.setLoai(loaiThietBi);
+        existing.setNgayNhap(thietBiDTO.getNgayNhap());
+        existing.setTinhTrang(thietBiDTO.getTinhTrang());
+        existing.setGiaTri(thietBiDTO.getGiaTri());
+
+        return thietBiRepository.save(existing);
+    }
+
+    @Override
+    public void deleteThietBi(String maTB) throws DataNotFoundException {
+        ThietBi existing = getThietBiById(maTB);
+        thietBiRepository.delete(existing);
+
     }
 }

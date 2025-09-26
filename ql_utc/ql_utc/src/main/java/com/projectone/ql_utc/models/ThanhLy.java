@@ -14,9 +14,8 @@ import java.math.BigDecimal;
 @Table(name = "thanh_ly")
 public class ThanhLy {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "ma_tl")
-    private Integer maTL;
+    private String maTL;
 
     @ManyToOne
     @JoinColumn(name = "ma_tb", nullable = false)

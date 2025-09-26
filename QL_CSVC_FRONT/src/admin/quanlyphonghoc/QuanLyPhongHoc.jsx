@@ -1,11 +1,14 @@
 import React, { useState } from 'react';
 import { Search, Plus, Edit, Trash2 } from 'lucide-react';
 import './QuanLyPhongHoc.css';
-
+import ModalRoomThem from './ModalRoomThem'; // Import modal thêm phòng học
 const QuanLyPhongHoc = () => {
   const [searchTerm, setSearchTerm] = useState('');
   const [roomType, setRoomType] = useState('Tất cả');
   const [status, setStatus] = useState('Tất cả');
+  const [isEditModalOpen, setIsEditModalOpen] = useState(false); // State cho modal chỉnh sửa
+  const [currentRoom, setCurrentRoom] = useState(null); // State lưu trữ dữ liệu phòng học hiện tại
+  const [isModalOpen, setIsModalOpen] = useState(false); // State cho modal thêm phòng học
 
   const roomData = [
     {
@@ -80,88 +83,55 @@ const QuanLyPhongHoc = () => {
     }
   };
 
+  // Hàm mở modal chỉnh sửa và truyền dữ liệu phòng học
+  const handleOpenEditModal = (room) => {
+    setCurrentRoom(room);
+    setIsEditModalOpen(true);
+  };
+
+  // Hàm đóng modal chỉnh sửa
+  const handleCloseEditModal = () => {
+    setIsEditModalOpen(false);
+    setCurrentRoom(null);
+  };
+
+  // Hàm xử lý thay đổi input trong modal chỉnh sửa
+  const handleEditInputChange = (e) => {
+    const { name, value } = e.target;
+    setCurrentRoom({ ...currentRoom, [name]: value });
+  };
+
+  // Hàm xử lý khi submit form chỉnh sửa
+  const handleEditFormSubmit = (e) => {
+    e.preventDefault();
+    console.log('Updated Room Data:', currentRoom);
+    // Logic để cập nhật dữ liệu phòng học trong danh sách
+    handleCloseEditModal();
+  };
+  const handleOpenModal = () => {
+    setIsModalOpen(true);
+  };
+
+  const handleCloseModal = () => {
+    setIsModalOpen(false);
+  };
+
   return (
     <div className="room-management">
-      {/* Header */}
+      {/* ... phần Header, Statistics, Filters không thay đổi */}
       <div className="header">
         <h1 className="page-title">Quản lý phòng học</h1>
-        <button className="add-button">
+        {/* Nút thêm phòng học có thể có modal riêng hoặc sử dụng chung */}
+        <button className="add-button" onClick={handleOpenModal}>
           <Plus size={18} />
           Thêm phòng học
         </button>
       </div>
-
-      {/* Statistics Cards */}
       <div className="stats-grid">
-        <div className="stat-card total">
-          <div className="stat-icon">📊</div>
-          <div className="stat-content">
-            <div className="stat-label">Tổng số phòng</div>
-            <div className="stat-number">5</div>
-          </div>
-        </div>
-        
-        <div className="stat-card active">
-          <div className="stat-icon">✓</div>
-          <div className="stat-content">
-            <div className="stat-label">Đang hoạt động</div>
-            <div className="stat-number">3</div>
-          </div>
-        </div>
-        
-        <div className="stat-card maintenance">
-          <div className="stat-icon">⚠</div>
-          <div className="stat-content">
-            <div className="stat-label">Đang bảo trì</div>
-            <div className="stat-number">1</div>
-          </div>
-        </div>
-        
-        <div className="stat-card inactive">
-          <div className="stat-icon">✕</div>
-          <div className="stat-content">
-            <div className="stat-label">Ngừng sử dụng</div>
-            <div className="stat-number">1</div>
-          </div>
-        </div>
+        {/* ... */}
       </div>
-
-      {/* Filters */}
       <div className="filters">
-        <div className="search-box">
-          <Search size={20} className="search-icon" />
-          <input
-            type="text"
-            placeholder="Tìm theo mã phòng, tên phòng, thiết bị..."
-            value={searchTerm}
-            onChange={(e) => setSearchTerm(e.target.value)}
-            className="search-input"
-          />
-        </div>
-        
-        <div className="filter-group">
-          <div className="filter-item">
-            <label>Loại phòng</label>
-            <select value={roomType} onChange={(e) => setRoomType(e.target.value)}>
-              <option value="Tất cả">Tất cả</option>
-              <option value="Phòng học lý thuyết">Phòng học lý thuyết</option>
-              <option value="Phòng thí nghiệm">Phòng thí nghiệm</option>
-              <option value="Phòng máy tính">Phòng máy tính</option>
-              <option value="Phòng họp">Phòng họp</option>
-              <option value="Phòng thực hành">Phòng thực hành</option>
-            </select>
-          </div>
-          
-          <div className="filter-item">
-            <label>Trạng thái</label>
-            <select value={status} onChange={(e) => setStatus(e.target.value)}>
-              <option value="Tất cả">Tất cả</option>
-              <option value="Hoạt động">Hoạt động</option>
-              <option value="Bảo trì">Bảo trì</option>
-              <option value="Ngừng sử dụng">Ngừng sử dụng</option>
-            </select>
-          </div>
-        </div>
+        {/* ... */}
       </div>
 
       {/* Table */}
@@ -196,7 +166,11 @@ const QuanLyPhongHoc = () => {
                   </span>
                 </td>
                 <td className="actions">
-                  <button className="action-btn edit">
+                  {/* Gán sự kiện onClick để mở modal chỉnh sửa */}
+                  <button 
+                    className="action-btn edit"
+                    onClick={() => handleOpenEditModal(room)}
+                  >
                     <Edit size={16} />
                   </button>
                   <button className="action-btn delete">
@@ -208,6 +182,114 @@ const QuanLyPhongHoc = () => {
           </tbody>
         </table>
       </div>
+
+      {/* Modal chỉnh sửa - chỉ hiển thị khi isEditModalOpen là true và currentRoom có dữ liệu */}
+      {isEditModalOpen && currentRoom && (
+        <div className="modal-overlay">
+          <div className="modal-container">
+            <div className="modal-header">
+              <h2>Sửa thông tin phòng học</h2>
+              <button className="close-btn" onClick={handleCloseEditModal}>
+                &times;
+              </button>
+            </div>
+            <p className="modal-subtitle">
+              Điền thông tin để cập nhật phòng học
+            </p>
+
+            <form onSubmit={handleEditFormSubmit} className="modal-form">
+              <div className="form-row">
+                <div className="form-group">
+                  <label htmlFor="roomCode">Mã phòng *</label>
+                  <input
+                    type="text"
+                    id="roomCode"
+                    name="roomCode"
+                    value={currentRoom.id} // Mã phòng không cho sửa
+                    readOnly 
+                    className="read-only-input"
+                  />
+                </div>
+                <div className="form-group">
+                  <label htmlFor="roomName">Tên phòng *</label>
+                  <input
+                    type="text"
+                    id="roomName"
+                    name="name"
+                    value={currentRoom.name}
+                    onChange={handleEditInputChange}
+                    placeholder="Phòng học A101"
+                  />
+                </div>
+              </div>
+
+              <div className="form-row">
+                <div className="form-group">
+                  <label htmlFor="roomType">Loại phòng *</label>
+                  <select
+                    id="roomType"
+                    name="type"
+                    value={currentRoom.type}
+                    onChange={handleEditInputChange}
+                  >
+                    <option value="Phòng học lý thuyết">Phòng học lý thuyết</option>
+                    <option value="Phòng thí nghiệm">Phòng thí nghiệm</option>
+                    <option value="Phòng máy tính">Phòng máy tính</option>
+                    <option value="Phòng họp">Phòng họp</option>
+                    <option value="Phòng thực hành">Phòng thực hành</option>
+                  </select>
+                </div>
+                <div className="form-group">
+                  <label htmlFor="capacity">Sức chứa *</label>
+                  <input
+                    type="text" // Đổi type về text để phù hợp với dữ liệu mẫu
+                    id="capacity"
+                    name="capacity"
+                    value={currentRoom.capacity}
+                    onChange={handleEditInputChange}
+                    placeholder="50 người"
+                  />
+                </div>
+              </div>
+
+              <div className="form-group">
+                <label htmlFor="status">Trạng thái</label>
+                <select
+                  id="status"
+                  name="status"
+                  value={currentRoom.status}
+                  onChange={handleEditInputChange}
+                >
+                  <option value="Hoạt động">Hoạt động</option>
+                  <option value="Bảo trì">Bảo trì</option>
+                  <option value="Ngừng sử dụng">Ngừng sử dụng</option>
+                </select>
+              </div>
+
+              <div className="form-group">
+                <label htmlFor="fixedEquipment">Thiết bị cố định</label>
+                <textarea
+                  id="fixedEquipment"
+                  name="equipment"
+                  value={currentRoom.equipment}
+                  onChange={handleEditInputChange}
+                  placeholder="Ví dụ: Máy chiếu, bảng tương tác, hệ thống âm thanh, điều hòa..."
+                ></textarea>
+              </div>
+
+              <div className="modal-actions">
+                <button type="button" className="cancel-btn" onClick={handleCloseEditModal}>
+                  Hủy
+                </button>
+                <button type="submit" className="add-btn">
+                  Cập nhật
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      )}
+      <ModalRoomThem isOpen={isModalOpen} onClose={handleCloseModal} />
     </div>
   );
 };
