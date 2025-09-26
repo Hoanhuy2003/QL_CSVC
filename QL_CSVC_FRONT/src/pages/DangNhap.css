@@ -1,0 +1,76 @@
+body {
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+  background-color: #ffffff; /* nền trắng toàn trang */
+}
+
+.login-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh; /* full chiều cao */
+  background-color: #ffffff; /* nền xám nhạt */
+}
+
+.login-box {
+  background: #ffffff;
+  padding: 2rem 3rem;
+  border-radius: 12px;
+  box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.1);
+  width: 380px;
+  text-align: center;
+}
+
+.system-title {
+  font-size: 1.4rem;
+  font-weight: bold;
+  margin-bottom: 1rem;
+  color: #2c3e50;
+}
+
+.login-title {
+  font-size: 1.2rem;
+  margin-bottom: 1.5rem;
+  color: #34495e;
+}
+
+input {
+  width: 100%;
+  padding: 10px 12px;
+  margin: 10px 0;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 1rem;
+}
+
+button {
+  width: 100%;
+  padding: 10px;
+  margin-top: 15px;
+  background-color: #2e86de;
+  border: none;
+  border-radius: 6px;
+  color: white;
+  font-size: 1rem;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #1b4f72;
+}
+
+.register-text {
+  margin-top: 15px;
+  font-size: 0.9rem;
+  color: #555;
+}
+
+.register-text span {
+  color: #2e86de;
+  cursor: pointer;
+  font-weight: bold;
+}
+.register-text span:hover {
+  text-decoration: underline;
+}
