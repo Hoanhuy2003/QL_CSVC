@@ -1,8 +1,6 @@
 import React from "react";
 import Header from "./components/header/Header";
 import Sidebar from "./components/sidebar/Sidebar";
-
-import RoomGrid from "./components/roomgrid/RoomGrid";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import DangNhap from "./pages/DangNhap";
 import DangKy from "./pages/DangKy";
