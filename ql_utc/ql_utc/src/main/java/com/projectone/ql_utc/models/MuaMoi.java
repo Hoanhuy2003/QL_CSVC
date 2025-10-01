@@ -14,12 +14,16 @@ import java.math.BigDecimal;
 @Table(name = "mua_moi")
 public class MuaMoi {
     @Id
-    @Column(name = "mua_moi")
+    @Column(name = "ma_mua")
     private String maMua;
 
     @ManyToOne
-    @JoinColumn(name = "matb", nullable = false)
+    @JoinColumn(name = "ma_tb", nullable = false)
     private ThietBi thietBi;
+
+    @ManyToOne
+    @JoinColumn(name = "ma_loai")
+    private LoaiThietBi loaiThietBi;
 
     @Column(name = "ngay_mua", nullable = false)
     private java.sql.Date ngayMua;

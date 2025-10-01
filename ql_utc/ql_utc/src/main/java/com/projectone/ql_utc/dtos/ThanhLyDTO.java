@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.*;
 
 import java.math.BigDecimal;
+import java.sql.Date;
 import java.time.LocalDate;
 
 @Data
@@ -19,7 +20,7 @@ public class ThanhLyDTO {
     private String maTB;
 
     @JsonProperty("ngay_thanh_ly")
-    private LocalDate ngayThanhLy;
+    private Date ngayThanhLy;
 
     @JsonProperty("ly_do")
     private String lyDo;

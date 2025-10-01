@@ -5,7 +5,7 @@ import lombok.*;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
-import java.util.Date;
+import java.sql.Date;
 
 @Data
 @Getter
@@ -19,6 +19,9 @@ public class MuaMoiDTO {
 
     @JsonProperty("ma_tb")
     private String maTB;
+
+    @JsonProperty("ma_loai")
+    private String maLoai;
 
     @JsonProperty("ngay_mua")
     private Date ngayMua;
