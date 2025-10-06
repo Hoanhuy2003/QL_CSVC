@@ -1,11 +1,12 @@
-import React from 'react'
-import { Routes, Route } from 'react-router-dom'
-import Header from './components/staff/layout/Header'
-import Dashboard from './pages/staff/Dashboard'
-import ApprovalPage from './pages/staff/DuyetPhieuMuon'
-import MaintenancePage from './pages/staff/QuanLyBaoTri'
-import LichHoc from './pages/staff/LichHoc'
-import HoSo from './pages/staff/HoSo'
+import React from 'react';
+import { Routes, Route } from 'react-router-dom';
+
+import Header from './staff/staffLayout/layout/Header';
+import Dashboard from './staff/staff/Dashboard';
+import DuyetPhieuMuon from './staff/staff/DuyetPhieuMuon';
+import QuanLyBaoTri from './staff/staff/QuanLyBaoTri';
+import LichHoc from './staff/staff/LichHoc';
+import HoSo from './staff/staff/HoSo';
 
 function App() {
   return (
@@ -15,14 +16,14 @@ function App() {
         <Routes>
           <Route path="/" element={<Dashboard />} />
           <Route path="/dashboard" element={<Dashboard />} />
-          <Route path="/approval" element={<ApprovalPage />} />
-          <Route path="/maintenance" element={<MaintenancePage />} />
+          <Route path="/approval" element={<DuyetPhieuMuon />} />
+          <Route path="/maintenance" element={<QuanLyBaoTri />} />
           <Route path="/schedule" element={<LichHoc />} />
           <Route path="/hoso" element={<HoSo />} />
         </Routes>
       </main>
     </div>
-  )
+  );
 }
 
-export default App
+export default App;

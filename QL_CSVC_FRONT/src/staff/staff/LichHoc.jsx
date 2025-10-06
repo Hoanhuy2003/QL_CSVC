@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Clock, Calendar, List, Plus, ExternalLink } from 'lucide-react';
-import './../../components/staff/styles/lichhoc.css';
+import '../staffLayout/styles/lichhoc.css';
 
 const LichHoc = () => {
   const [viewMode, setViewMode] = useState('list'); // 'list' or 'calendar'

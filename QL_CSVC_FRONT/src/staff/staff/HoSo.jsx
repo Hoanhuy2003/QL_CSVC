@@ -7,7 +7,7 @@ import {
   Edit,
   Briefcase
 } from 'lucide-react';
-import './../../components/staff/styles/hoso.css';
+import '../staffLayout/styles/hoso.css';
 
 const HoSo = () => {
   const [isEditing, setIsEditing] = useState(false);

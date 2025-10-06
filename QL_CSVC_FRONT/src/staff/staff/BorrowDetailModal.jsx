@@ -1,6 +1,6 @@
 import React from 'react';
 import { X, Eye, Check, XCircle } from 'lucide-react';
-import './../../components/staff/styles/borrowdetailmodal.css';
+import '../staffLayout/styles/borrowdetailmodal.css';
 
 const BorrowDetailModal = ({ isOpen, onClose, requestData }) => {
   if (!isOpen) return null;

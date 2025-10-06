@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import './../../components/staff/styles/addmaintenancemodal.css';
+import '../staffLayout/styles/addmaintenancemodal.css';
 
 const AddMaintenanceModal = ({ isOpen, onClose, onSubmit }) => {
   const [formData, setFormData] = useState({

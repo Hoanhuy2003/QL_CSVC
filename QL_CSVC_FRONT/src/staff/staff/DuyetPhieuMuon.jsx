@@ -10,7 +10,7 @@ import {
   Check,
   X
 } from 'lucide-react';
-import './../../components/staff/styles/duyetphieumuon.css';
+import '../staffLayout/styles/duyetphieumuon.css';
 import BorrowDetailModal from './BorrowDetailModal';
 
 const ApprovalPage = () => {

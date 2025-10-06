@@ -11,7 +11,7 @@ import {
   ChevronDown,
   LogOut 
 } from 'lucide-react'
-import './../styles/header.css'
+import '../../staffLayout/styles/header.css'
 
 const Header = () => {
   const [showUserMenu, setShowUserMenu] = useState(false)

@@ -15,7 +15,7 @@ import {
   Trash2
 } from 'lucide-react';
 import AddMaintenanceModal from './AddMaintenanceModal'; 
-import './../../components/staff/styles/quanlybaotri.css';
+import '../staffLayout/styles/quanlybaotri.css';
 
 const MaintenancePage = () => {
   const [searchTerm, setSearchTerm] = useState('');

@@ -10,7 +10,8 @@ import {
   FileText,
   Settings
 } from 'lucide-react';
-import './../../components/staff/styles/dashboard.css';
+import '../staffLayout/styles/dashboard.css';
+
 
 const Dashboard = () => {
   const navigate = useNavigate();
