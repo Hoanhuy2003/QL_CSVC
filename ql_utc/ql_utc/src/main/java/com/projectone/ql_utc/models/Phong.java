@@ -4,6 +4,8 @@ import com.projectone.ql_utc.enums.TrangThaiPhong;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.util.List;
+
 @Entity
 @Getter
 @Setter
@@ -27,6 +29,13 @@ public class Phong {
 
     @Column(name = "trang_thai")
     private TrangThaiPhong trangThai;
+
+    
+
+
+
+
+
 
     // getters & setters
 }
