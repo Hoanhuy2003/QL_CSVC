@@ -1,253 +1,455 @@
 // src/pages/staff/DuyetPhieuMuon.jsx
-import React, { useState } from 'react';
-import { 
-  Clock,
-  AlertTriangle, 
-  CheckCircle,
-  XCircle,
-  Search,
-  Eye,
-  Check,
-  X
-} from 'lucide-react';
-import './../../components/staff/styles/duyetphieumuon.css';
+import React, { useState, useEffect } from 'react';
+import { RefreshCw, XCircle } from 'lucide-react';
+
+// Components
+import ApprovalHeader from '../../components/staff/approval/ApprovalHeader';
+import ApprovalStats from '../../components/staff/approval/ApprovalStats';
+import ApprovalControls from '../../components/staff/approval/ApprovalControls';
+import ApprovalTable from '../../components/staff/approval/ApprovalTable';
 import BorrowDetailModal from './BorrowDetailModal';
 
-const ApprovalPage = () => {
-  const [searchTerm, setSearchTerm] = useState('');
-  const [statusFilter, setStatusFilter] = useState('Tất cả');
-  const [isModalOpen, setIsModalOpen] = useState(false);
-  const [selectedRequest, setSelectedRequest] = useState(null);
+// Styles
+import './../../components/staff/styles/duyetphieumuon.css';
 
-  // Mock dữ liệu
-  const mockData = [
-    {
-      id: 'PM001',
-      student: 'Nguyễn Văn A (GV001)',
-      class: 'Lập trình Java cơ bản LTC001',
-      room: 'A101 Phòng học A101',
-      borrowTime: '08:00:00 22/9/2024',
-      returnTime: '11:00:00 22/9/2024',
-      status: 'pending'
-    },
-    {
-      id: 'PM002', 
-      student: 'TS. Trần Thị B (GV002)',
-      class: 'Cơ sở dữ liệu LTC002',
-      room: 'B205 Phòng thí nghiệm B205',
-      borrowTime: '13:30:00 23/9/2024',
-      returnTime: '16:00:00 23/9/2024',
-      status: 'approved'
-    },
-    {
-      id: 'PM003',
-      student: 'Lê Minh C (SV003)',
-      class: 'Mạng máy tính G301',
-      room: 'C102 Phòng lab C102',
-      borrowTime: '09:00:00 24/9/2024',
-      returnTime: '12:00:00 24/9/2024',
-      status: 'overdue'
-    },
-    {
-      id: 'PM004',
-      student: 'Phạm Thị D (SV004)',
-      class: 'Tin học văn phòng T201',
-      room: 'D301 Phòng máy tính',
-      borrowTime: '14:00:00 25/9/2024', 
-      returnTime: '17:00:00 25/9/2024',
-      status: 'approved'
-    }
-  ];
+// ==================== CONSTANTS ====================
+const API_BASE_URL = 'http://localhost:8080/api/phieu-muon';
 
-  // Hàm mở modal chi tiết
-  const handleViewDetail = (request) => {
-    setSelectedRequest(request);
-    setIsModalOpen(true);
-  };
-
-  const closeModal = () => {
-    setIsModalOpen(false);
-    setSelectedRequest(null);
-  };
-
-  // Hàm hiển thị trạng thái
-  const getStatusText = (status) => {
-    switch(status) {
-      case 'pending': return 'Chờ duyệt';
-      case 'approved': return 'Đã duyệt';
-      case 'overdue': return 'Quá hạn';
-      default: return '';
-    }
-  };
-
-  const getStatusClass = (status) => {
-    switch(status) {
-      case 'pending': return 'status-pending';
-      case 'approved': return 'status-approved';
-      case 'overdue': return 'status-overdue';
-      default: return '';
-    }
-  };
-
-  // Lọc dữ liệu
-  const filteredData = mockData.filter(item => {
-    const matchesSearch = 
-      item.student.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      item.class.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      item.id.toLowerCase().includes(searchTerm.toLowerCase());
-    const matchesStatus = statusFilter === 'Tất cả' || getStatusText(item.status) === statusFilter;
-    return matchesSearch && matchesStatus;
-  });
-
-  // Thống kê
-  const totalRequests = mockData.length;
-  const pendingCount = mockData.filter(item => item.status === 'pending').length;
-  const approvedCount = mockData.filter(item => item.status === 'approved').length;
-  const overdueCount = mockData.filter(item => item.status === 'overdue').length;
-
-  return (
-    <div className="approval-page">
-      <div className="approval-container">
-        {/* Header */}
-        <div className="page-header">
-          <h1>Duyệt phiếu mượn thiết bị</h1>
-          <div className="status-badges">
-            <span className="badge-pending">{pendingCount} chờ duyệt</span>
-            <span className="badge-approved">{approvedCount} đã duyệt</span>
-            <span className="badge-overdue">{overdueCount} quá hạn</span>
-          </div>
-        </div>
-
-        {/* Statistics */}
-        <div className="stats-row">
-          <div className="stat-card total">
-            <Clock size={24} />
-            <div>
-              <div className="stat-number">{totalRequests}</div>
-              <div className="stat-label">Tổng phiếu mượn</div>
-            </div>
-          </div>
-
-          <div className="stat-card pending">
-            <AlertTriangle size={24} />
-            <div>
-              <div className="stat-number">{pendingCount}</div>
-              <div className="stat-label">Chờ duyệt</div>
-            </div>
-          </div>
-
-          <div className="stat-card approved">
-            <CheckCircle size={24} />
-            <div>
-              <div className="stat-number">{approvedCount}</div>
-              <div className="stat-label">Đã duyệt</div>
-            </div>
-          </div>
-
-          <div className="stat-card overdue">
-            <XCircle size={24} />
-            <div>
-              <div className="stat-number">{overdueCount}</div>
-              <div className="stat-label">Quá hạn</div>
-            </div>
-          </div>
-        </div>
-
-        {/* Controls */}
-        <div className="controls-row">
-          <div className="search-box">
-            <Search size={20} />
-            <input
-              type="text"
-              placeholder="Tìm theo mã phiếu, người lập, lớp học..."
-              value={searchTerm}
-              onChange={(e) => setSearchTerm(e.target.value)}
-            />
-          </div>
-          <div className="filter-dropdown">
-            <select 
-              value={statusFilter} 
-              onChange={(e) => setStatusFilter(e.target.value)}
-            >
-              <option value="Tất cả">Tất cả</option>
-              <option value="Chờ duyệt">Chờ duyệt</option>
-              <option value="Đã duyệt">Đã duyệt</option>
-              <option value="Quá hạn">Quá hạn</option>
-            </select>
-          </div>
-        </div>
-
-        {/* Table */}
-        <div className="table-container">
-          <table className="approval-table">
-            <thead>
-              <tr>
-                <th>Mã phiếu</th>
-                <th>Người lập</th>
-                <th>Lớp học</th>
-                <th>Phòng</th>
-                <th>Thời gian mượn</th>
-                <th>Hạn trả</th>
-                <th>Trạng thái</th>
-                <th>Hành động</th>
-              </tr>
-            </thead>
-            <tbody>
-              {filteredData.map((item, index) => (
-                <tr key={index}>
-                  <td>{item.id}</td>
-                  <td>{item.student}</td>
-                  <td>{item.class}</td>
-                  <td>{item.room}</td>
-                  <td>{item.borrowTime}</td>
-                  <td>{item.returnTime}</td>
-                  <td>
-                    <span className={`status-badge ${getStatusClass(item.status)}`}>
-                      {getStatusText(item.status)}
-                    </span>
-                  </td>
-                  <td>
-                    <div className="action-buttons">
-                      <button 
-                        className="btn-view" 
-                        title="Xem chi tiết"
-                        onClick={() => handleViewDetail(item)}
-                      >
-                        <Eye size={16} />
-                      </button>
-                      {item.status === 'pending' && (
-                        <>
-                          <button className="btn-approve" title="Duyệt">
-                            <Check size={16} />
-                          </button>
-                          <button className="btn-reject" title="Từ chối">
-                            <X size={16} />
-                          </button>
-                        </>
-                      )}
-                    </div>
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-
-          {filteredData.length === 0 && (
-            <div className="no-data">
-              <p>Không tìm thấy phiếu mượn nào phù hợp</p>
-            </div>
-          )}
-        </div>
-      </div>
-
-      {/* Modal chi tiết */}
-      <BorrowDetailModal 
-        isOpen={isModalOpen}
-        onClose={closeModal}
-        requestData={selectedRequest}
-      />
-    </div>
-  );
+const STATUS_TEXT = {
+    'CHO_DUYET': 'Chờ duyệt',
+    'DA_DUYET': 'Đã duyệt',
+    'DANG_MUON': 'Đang mượn',
+    'DA_TRA': 'Đã trả',
+    'TRA_THIEU': 'Trả thiếu',
+    'QUA_HAN': 'Quá hạn',
+    'TU_CHOI': 'Từ chối',
+    'DA_HUY': 'Đã hủy'
 };
 
-export default ApprovalPage;
+const STATUS_CLASS = {
+    'CHO_DUYET': 'status-pending',
+    'DA_DUYET': 'status-approved',
+    'DANG_MUON': 'status-borrowing',
+    'DA_TRA': 'status-returned',
+    'TRA_THIEU': 'status-incomplete',
+    'QUA_HAN': 'status-overdue',
+    'TU_CHOI': 'status-rejected',
+    'DA_HUY': 'status-cancelled'
+};
+
+const LOAI_PHIEU_TEXT = {
+    'CA_NHAN': 'Cá nhân',
+    'LOP_HOC': 'Lớp học'
+};
+
+// ==================== HELPER FUNCTIONS ====================
+
+const formatDateTime = (datetime) => {
+    if (!datetime) return '';
+    const date = new Date(datetime);
+    if (isNaN(date.getTime())) return '';
+
+    const day = String(date.getDate()).padStart(2, '0');
+    const month = String(date.getMonth() + 1).padStart(2, '0');
+    const year = date.getFullYear();
+    const hours = String(date.getHours()).padStart(2, '0');
+    const minutes = String(date.getMinutes()).padStart(2, '0');
+
+    return `${hours}:${minutes} ${day}/${month}/${year}`;
+};
+
+const formatCurrency = (amount) => {
+    if (!amount || amount === 0) return '0₫';
+    return new Intl.NumberFormat('vi-VN', {
+        style: 'currency',
+        currency: 'VND'
+    }).format(amount);
+};
+
+// ==================== MAIN COMPONENT ====================
+
+const DuyetPhieuMuon = () => {
+    // States
+    const [searchTerm, setSearchTerm] = useState('');
+    const [statusFilter, setStatusFilter] = useState('Tất cả');
+    const [loaiPhieuFilter, setLoaiPhieuFilter] = useState('Tất cả');
+    const [isModalOpen, setIsModalOpen] = useState(false);
+    const [selectedRequest, setSelectedRequest] = useState(null);
+    const [borrowRequests, setBorrowRequests] = useState([]);
+    const [stats, setStats] = useState({});
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState(null);
+    const [processingId, setProcessingId] = useState(null);
+
+    // Load data on mount
+    useEffect(() => {
+        loadData();
+    }, []);
+
+    // Fetch data from API
+    const loadData = async () => {
+        try {
+            setLoading(true);
+            setError(null);
+
+            const [borrowResponse, statsResponse] = await Promise.all([
+                fetch(`${API_BASE_URL}/all`),
+                fetch(`${API_BASE_URL}/thong-ke/trang-thai`)
+            ]);
+
+            if (!borrowResponse.ok || !statsResponse.ok) {
+                throw new Error('Không thể tải dữ liệu từ server');
+            }
+
+            const borrowData = await borrowResponse.json();
+            const statsData = await statsResponse.json();
+
+            console.log('📊 Borrow Data:', borrowData);
+            console.log('📈 Stats Data:', statsData);
+
+            setBorrowRequests(borrowData);
+            setStats(statsData);
+        } catch (err) {
+            setError(err.message);
+            console.error('❌ Error loading data:', err);
+        } finally {
+            setLoading(false);
+        }
+    };
+
+    // Map API Response to display format
+    const mapApiToDisplay = (item) => {
+        return {
+            id: item.maPM || '',
+            loaiPhieu: item.loaiPhieu || 'CA_NHAN',
+            loaiPhieuText: LOAI_PHIEU_TEXT[item.loaiPhieu] || 'N/A',
+            student: item.tenNguoiMuon || 'N/A',
+            room: item.tenPhong || item.maPhong || '',
+            borrowTime: formatDateTime(item.thoiDiemMuon),
+            returnTime: formatDateTime(item.hanTra),
+            actualReturnTime: formatDateTime(item.thoiDiemTra),
+            status: item.trangThai || 'CHO_DUYET',
+            statusText: STATUS_TEXT[item.trangThai] || 'N/A',
+
+            // Thông tin bổ sung
+            nguoiLapPhieu: item.nguoiLapPhieu || null,
+            nguoiDuyet: item.nguoiDuyet || null,
+            ngayDuyet: formatDateTime(item.ngayDuyet),
+            lyDoTuChoi: item.lyDoTuChoi || null,
+
+            soThietBi: item.soThietBi || 0,
+            soThietBiDaTra: item.soThietBiDaTra || 0,
+            tongPhiBoiThuong: item.tongPhiBoiThuong || 0,
+            tongPhiBoiThuongText: formatCurrency(item.tongPhiBoiThuong),
+
+            daQuaHan: item.daQuaHan || false,
+            danhSachThietBi: item.danhSachThietBi || [],
+
+            rawData: item
+        };
+    };
+
+    // Approve request - CẦN BỔ SUNG ENDPOINT Ở BACKEND
+    const handleApprove = async (maPM) => {
+        if (!window.confirm('Bạn có chắc chắn muốn duyệt phiếu mượn này?')) {
+            return;
+        }
+
+        setProcessingId(maPM);
+        try {
+            // Lấy mã nhân viên - TẠM THỜI hardcode
+            const maNV = localStorage.getItem('maNV') || 'NV001';
+
+            // TODO: Backend cần thêm endpoint PUT /{maPM}/duyet
+            const response = await fetch(`${API_BASE_URL}/${maPM}/duyet`, {
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    maNV: maNV,
+                    choDuyet: true,
+                    lyDoTuChoi: null
+                })
+            });
+
+            if (!response.ok) {
+                const errorData = await response.json().catch(() => ({}));
+                throw new Error(errorData.message || 'Có lỗi xảy ra khi duyệt phiếu');
+            }
+
+            const data = await response.json();
+
+            alert('✅ Đã duyệt phiếu mượn thành công!');
+            await loadData(); // Reload data
+        } catch (err) {
+            console.error('❌ Error approving:', err);
+            alert('❌ ' + err.message);
+        } finally {
+            setProcessingId(null);
+        }
+    };
+
+    // Reject request - CẦN BỔ SUNG ENDPOINT Ở BACKEND
+    const handleReject = async (maPM) => {
+        const reason = window.prompt('Nhập lý do từ chối (bắt buộc):');
+
+        if (reason === null) return; // User cancelled
+
+        if (!reason || reason.trim() === '') {
+            alert('⚠️ Vui lòng nhập lý do từ chối!');
+            return;
+        }
+
+        setProcessingId(maPM);
+        try {
+            const maNV = localStorage.getItem('maNV') || 'NV001';
+
+            // TODO: Backend cần thêm endpoint PUT /{maPM}/duyet
+            const response = await fetch(`${API_BASE_URL}/${maPM}/duyet`, {
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    maNV: maNV,
+                    choDuyet: false,
+                    lyDoTuChoi: reason.trim()
+                })
+            });
+
+            if (!response.ok) {
+                const errorData = await response.json().catch(() => ({}));
+                throw new Error(errorData.message || 'Có lỗi xảy ra khi từ chối phiếu');
+            }
+
+            const data = await response.json();
+
+            alert('✅ Đã từ chối phiếu mượn!');
+            await loadData();
+        } catch (err) {
+            console.error('❌ Error rejecting:', err);
+            alert('❌ ' + err.message);
+        } finally {
+            setProcessingId(null);
+        }
+    };
+
+    // Modal handlers
+    const handleViewDetail = (request) => {
+        setSelectedRequest(request);
+        setIsModalOpen(true);
+    };
+
+    const closeModal = () => {
+        setIsModalOpen(false);
+        setSelectedRequest(null);
+    };
+
+    // Filter data
+    const displayData = borrowRequests.map(mapApiToDisplay);
+
+    const filteredData = displayData.filter(item => {
+        // Search filter
+        const searchLower = searchTerm.toLowerCase();
+        const matchesSearch =
+            item.student.toLowerCase().includes(searchLower) ||
+            item.id.toLowerCase().includes(searchLower) ||
+            item.room.toLowerCase().includes(searchLower);
+
+        // Status filter
+        let matchesStatus = true;
+        if (statusFilter !== 'Tất cả') {
+            matchesStatus = item.status === statusFilter;
+        }
+
+        // Loại phiếu filter
+        let matchesLoaiPhieu = true;
+        if (loaiPhieuFilter !== 'Tất cả') {
+            matchesLoaiPhieu = item.loaiPhieu === loaiPhieuFilter;
+        }
+
+        return matchesSearch && matchesStatus && matchesLoaiPhieu;
+    });
+
+    // Clear filters
+    const handleClearFilters = () => {
+        setSearchTerm('');
+        setStatusFilter('Tất cả');
+        setLoaiPhieuFilter('Tất cả');
+    };
+
+    // Calculate stats
+    const totalRequests = stats['TAT_CA'] || 0;
+    const pendingCount = stats['CHO_DUYET'] || 0;
+    const approvedCount = stats['DA_DUYET'] || 0;
+    const overdueCount = stats['QUA_HAN'] || 0;
+
+    // ==================== RENDER ====================
+
+    // Loading state
+    if (loading) {
+        return (
+            <div className="approval-page">
+                <div className="approval-container">
+                    <div style={{ textAlign: 'center', padding: '3rem' }}>
+                        <RefreshCw size={48} style={{ animation: 'spin 1s linear infinite' }} />
+                        <p style={{ marginTop: '1rem', fontSize: '1.1rem' }}>Đang tải dữ liệu...</p>
+                    </div>
+                </div>
+            </div>
+        );
+    }
+
+    // Error state
+    if (error) {
+        return (
+            <div className="approval-page">
+                <div className="approval-container">
+                    <div style={{ textAlign: 'center', padding: '3rem', color: '#e74c3c' }}>
+                        <XCircle size={48} />
+                        <p style={{ marginTop: '1rem', fontSize: '1.1rem' }}>❌ Lỗi: {error}</p>
+                        <button
+                            onClick={loadData}
+                            style={{
+                                marginTop: '1.5rem',
+                                padding: '0.75rem 1.5rem',
+                                backgroundColor: '#3498db',
+                                color: 'white',
+                                border: 'none',
+                                borderRadius: '6px',
+                                cursor: 'pointer',
+                                fontSize: '1rem',
+                                transition: 'background-color 0.2s'
+                            }}
+                            onMouseOver={(e) => e.target.style.backgroundColor = '#2980b9'}
+                            onMouseOut={(e) => e.target.style.backgroundColor = '#3498db'}
+                        >
+                            <RefreshCw size={16} style={{ marginRight: '0.5rem', verticalAlign: 'middle' }} />
+                            Thử lại
+                        </button>
+                    </div>
+                </div>
+            </div>
+        );
+    }
+
+    // Main content
+    return (
+        <div className="approval-page">
+            <div className="approval-container">
+
+                <ApprovalHeader
+                    pendingCount={pendingCount}
+                    approvedCount={approvedCount}
+                    overdueCount={overdueCount}
+                />
+
+                <ApprovalStats
+                    totalRequests={totalRequests}
+                    pendingCount={pendingCount}
+                    approvedCount={approvedCount}
+                    overdueCount={overdueCount}
+                />
+
+                <ApprovalControls
+                    searchTerm={searchTerm}
+                    onSearchChange={setSearchTerm}
+                    statusFilter={statusFilter}
+                    onFilterChange={setStatusFilter}
+                    loaiPhieuFilter={loaiPhieuFilter}
+                    onLoaiPhieuChange={setLoaiPhieuFilter}
+                    onRefresh={loadData}
+                    loading={loading}
+                    statusOptions={Object.keys(STATUS_TEXT)}
+                    statusText={STATUS_TEXT}
+                />
+
+                {/* Results summary */}
+                {(searchTerm || statusFilter !== 'Tất cả' || loaiPhieuFilter !== 'Tất cả') && (
+                    <div style={{
+                        padding: '0.75rem 1rem',
+                        backgroundColor: '#f8f9fa',
+                        borderRadius: '6px',
+                        marginBottom: '1rem',
+                        fontSize: '0.95rem',
+                        color: '#666',
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'space-between'
+                    }}>
+                        <span>
+                            Tìm thấy <strong>{filteredData.length}</strong> phiếu mượn
+                            {searchTerm && ` với từ khóa "${searchTerm}"`}
+                            {statusFilter !== 'Tất cả' && ` - Trạng thái: ${STATUS_TEXT[statusFilter]}`}
+                            {loaiPhieuFilter !== 'Tất cả' && ` - Loại: ${LOAI_PHIEU_TEXT[loaiPhieuFilter]}`}
+                        </span>
+                        <button
+                            onClick={handleClearFilters}
+                            style={{
+                                padding: '0.4rem 0.8rem',
+                                backgroundColor: '#e74c3c',
+                                color: 'white',
+                                border: 'none',
+                                borderRadius: '4px',
+                                cursor: 'pointer',
+                                fontSize: '0.85rem',
+                                transition: 'background-color 0.2s'
+                            }}
+                            onMouseOver={(e) => e.target.style.backgroundColor = '#c0392b'}
+                            onMouseOut={(e) => e.target.style.backgroundColor = '#e74c3c'}
+                        >
+                            Xóa bộ lọc
+                        </button>
+                    </div>
+                )}
+
+                <ApprovalTable
+                    data={filteredData}
+                    onViewDetail={handleViewDetail}
+                    onApprove={handleApprove}
+                    onReject={handleReject}
+                    processingId={processingId}
+                    statusText={STATUS_TEXT}
+                    statusClass={STATUS_CLASS}
+                />
+
+                {/* Empty state */}
+                {filteredData.length === 0 && !loading && (
+                    <div style={{
+                        textAlign: 'center',
+                        padding: '3rem',
+                        color: '#999'
+                    }}>
+                        <p style={{ fontSize: '1.1rem' }}>Không tìm thấy phiếu mượn nào</p>
+                        {(searchTerm || statusFilter !== 'Tất cả' || loaiPhieuFilter !== 'Tất cả') && (
+                            <button
+                                onClick={handleClearFilters}
+                                style={{
+                                    marginTop: '1rem',
+                                    padding: '0.5rem 1rem',
+                                    backgroundColor: '#3498db',
+                                    color: 'white',
+                                    border: 'none',
+                                    borderRadius: '4px',
+                                    cursor: 'pointer'
+                                }}
+                            >
+                                Xóa bộ lọc
+                            </button>
+                        )}
+                    </div>
+                )}
+
+            </div>
+
+            <BorrowDetailModal
+                isOpen={isModalOpen}
+                onClose={closeModal}
+                requestData={selectedRequest}
+            />
+        </div>
+    );
+};
+
+export default DuyetPhieuMuon;
