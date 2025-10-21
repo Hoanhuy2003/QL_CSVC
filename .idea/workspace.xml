@@ -1,0 +1,265 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="e32a5dfc-79f0-4b1d-8fb5-15d709268cb5" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/QL_CSVC_FRONT/src/api/staff/nhanvienAPI.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/QL_CSVC_FRONT/src/components/staff/approval/ApprovalControls.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/QL_CSVC_FRONT/src/components/staff/approval/ApprovalHeader.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/QL_CSVC_FRONT/src/components/staff/approval/ApprovalStats.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/QL_CSVC_FRONT/src/components/staff/approval/ApprovalTable.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/QL_CSVC_FRONT/src/components/staff/approval/ApprovalTableRow.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/QL_CSVC_FRONT/src/components/staff/modals/BorrowDetailModal.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ql_utc/.idea/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ql_utc/.idea/compiler.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ql_utc/.idea/encodings.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ql_utc/.idea/jarRepositories.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ql_utc/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ql_utc/.idea/modules.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ql_utc/.idea/ql_utc.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ql_utc/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ql_utc/ql_utc/.gitattributes" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ql_utc/ql_utc/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ql_utc/ql_utc/.mvn/wrapper/maven-wrapper.properties" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ql_utc/ql_utc/mvnw" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ql_utc/ql_utc/mvnw.cmd" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ql_utc/ql_utc/pom.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ql_utc/ql_utc/src/main/java/com/projectone/ql_utc/QlUtcApplication.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ql_utc/ql_utc/src/main/java/com/projectone/ql_utc/config/SecurityConfig.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ql_utc/ql_utc/src/main/java/com/projectone/ql_utc/controllers/BaoTriController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ql_utc/ql_utc/src/main/java/com/projectone/ql_utc/controllers/DashboardController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ql_utc/ql_utc/src/main/java/com/projectone/ql_utc/controllers/LoaiThietBiController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ql_utc/ql_utc/src/main/java/com/projectone/ql_utc/controllers/MuaMoiController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ql_utc/ql_utc/src/main/java/com/projectone/ql_utc/controllers/NhanVienController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ql_utc/ql_utc/src/main/java/com/projectone/ql_utc/controllers/PhieuMuonController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ql_utc/ql_utc/src/main/java/com/projectone/ql_utc/controllers/ThanhLyController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ql_utc/ql_utc/src/main/java/com/projectone/ql_utc/controllers/ThietBiController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ql_utc/ql_utc/src/main/java/com/projectone/ql_utc/converter/TinhTrangThietBiConverter.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ql_utc/ql_utc/src/main/java/com/projectone/ql_utc/dtos/BaoTriDTO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ql_utc/ql_utc/src/main/java/com/projectone/ql_utc/dtos/BaoTriRequest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ql_utc/ql_utc/src/main/java/com/projectone/ql_utc/dtos/BaoTriThongKeResponse.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ql_utc/ql_utc/src/main/java/com/projectone/ql_utc/dtos/CTPhieuMuonDTO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ql_utc/ql_utc/src/main/java/com/projectone/ql_utc/dtos/CTPhieuMuonResponse.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ql_utc/ql_utc/src/main/java/com/projectone/ql_utc/dtos/DashboardStatsResponse.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ql_utc/ql_utc/src/main/java/com/projectone/ql_utc/dtos/DuyetPhieuMuonRequest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ql_utc/ql_utc/src/main/java/com/projectone/ql_utc/dtos/LichHocDTO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ql_utc/ql_utc/src/main/java/com/projectone/ql_utc/dtos/LichSuTbDTO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ql_utc/ql_utc/src/main/java/com/projectone/ql_utc/dtos/LoaiTBDTO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ql_utc/ql_utc/src/main/java/com/projectone/ql_utc/dtos/LopTinChiDTO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ql_utc/ql_utc/src/main/java/com/projectone/ql_utc/dtos/MuaMoiDTO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ql_utc/ql_utc/src/main/java/com/projectone/ql_utc/dtos/NhanTraThietBiRequest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ql_utc/ql_utc/src/main/java/com/projectone/ql_utc/dtos/NhanVienDTO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ql_utc/ql_utc/src/main/java/com/projectone/ql_utc/dtos/PhieuMuonDTO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ql_utc/ql_utc/src/main/java/com/projectone/ql_utc/dtos/PhieuMuonRequest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ql_utc/ql_utc/src/main/java/com/projectone/ql_utc/dtos/PhieuMuonResponse.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ql_utc/ql_utc/src/main/java/com/projectone/ql_utc/dtos/PhongDTO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ql_utc/ql_utc/src/main/java/com/projectone/ql_utc/dtos/RecentActivityResponse.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ql_utc/ql_utc/src/main/java/com/projectone/ql_utc/dtos/SinhVienDTO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ql_utc/ql_utc/src/main/java/com/projectone/ql_utc/dtos/TaiKhoanDTO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ql_utc/ql_utc/src/main/java/com/projectone/ql_utc/dtos/ThanhLyDTO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ql_utc/ql_utc/src/main/java/com/projectone/ql_utc/dtos/ThanhLyRequest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ql_utc/ql_utc/src/main/java/com/projectone/ql_utc/dtos/ThietBiDTO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ql_utc/ql_utc/src/main/java/com/projectone/ql_utc/dtos/ThietBiMuonRequest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ql_utc/ql_utc/src/main/java/com/projectone/ql_utc/enums/LoaiPhieu.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ql_utc/ql_utc/src/main/java/com/projectone/ql_utc/enums/TinhTrangKhiTra.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ql_utc/ql_utc/src/main/java/com/projectone/ql_utc/enums/TinhTrangThietBi.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ql_utc/ql_utc/src/main/java/com/projectone/ql_utc/enums/TrangThai.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ql_utc/ql_utc/src/main/java/com/projectone/ql_utc/enums/TrangThaiBaoTri.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ql_utc/ql_utc/src/main/java/com/projectone/ql_utc/enums/TrangThaiCTPhieuMuon.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ql_utc/ql_utc/src/main/java/com/projectone/ql_utc/enums/TrangThaiPhieuMuon.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ql_utc/ql_utc/src/main/java/com/projectone/ql_utc/enums/TrangThaiPhong.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ql_utc/ql_utc/src/main/java/com/projectone/ql_utc/enums/TrangThaiThanhLy.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ql_utc/ql_utc/src/main/java/com/projectone/ql_utc/enums/VaiTro.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ql_utc/ql_utc/src/main/java/com/projectone/ql_utc/exception/BusinessException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ql_utc/ql_utc/src/main/java/com/projectone/ql_utc/exception/DataNotFoundException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ql_utc/ql_utc/src/main/java/com/projectone/ql_utc/exception/ResourceNotFoundException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ql_utc/ql_utc/src/main/java/com/projectone/ql_utc/iservices/IBaoTriService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ql_utc/ql_utc/src/main/java/com/projectone/ql_utc/iservices/ILoaiThietBiService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ql_utc/ql_utc/src/main/java/com/projectone/ql_utc/iservices/IMuaMoiService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ql_utc/ql_utc/src/main/java/com/projectone/ql_utc/iservices/INhanVienService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ql_utc/ql_utc/src/main/java/com/projectone/ql_utc/iservices/IThanhLyService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ql_utc/ql_utc/src/main/java/com/projectone/ql_utc/iservices/IThietBiService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ql_utc/ql_utc/src/main/java/com/projectone/ql_utc/models/BaoTri.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ql_utc/ql_utc/src/main/java/com/projectone/ql_utc/models/CTPhieuMuon.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ql_utc/ql_utc/src/main/java/com/projectone/ql_utc/models/CTPhieuMuonId.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ql_utc/ql_utc/src/main/java/com/projectone/ql_utc/models/LichHoc.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ql_utc/ql_utc/src/main/java/com/projectone/ql_utc/models/LichSuThietBi.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ql_utc/ql_utc/src/main/java/com/projectone/ql_utc/models/LoaiThietBi.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ql_utc/ql_utc/src/main/java/com/projectone/ql_utc/models/LopTinChi.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ql_utc/ql_utc/src/main/java/com/projectone/ql_utc/models/MuaMoi.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ql_utc/ql_utc/src/main/java/com/projectone/ql_utc/models/NhanVien.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ql_utc/ql_utc/src/main/java/com/projectone/ql_utc/models/PhieuMuon.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ql_utc/ql_utc/src/main/java/com/projectone/ql_utc/models/Phong.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ql_utc/ql_utc/src/main/java/com/projectone/ql_utc/models/SinhVien.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ql_utc/ql_utc/src/main/java/com/projectone/ql_utc/models/TaiKhoan.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ql_utc/ql_utc/src/main/java/com/projectone/ql_utc/models/ThanhLy.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ql_utc/ql_utc/src/main/java/com/projectone/ql_utc/models/ThietBi.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ql_utc/ql_utc/src/main/java/com/projectone/ql_utc/repositorys/BaoTriRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ql_utc/ql_utc/src/main/java/com/projectone/ql_utc/repositorys/CTPhieuMuonRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ql_utc/ql_utc/src/main/java/com/projectone/ql_utc/repositorys/LichHocRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ql_utc/ql_utc/src/main/java/com/projectone/ql_utc/repositorys/LoaiThietBiRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ql_utc/ql_utc/src/main/java/com/projectone/ql_utc/repositorys/LopTinChiRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ql_utc/ql_utc/src/main/java/com/projectone/ql_utc/repositorys/MuaMoiRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ql_utc/ql_utc/src/main/java/com/projectone/ql_utc/repositorys/NhanVienRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ql_utc/ql_utc/src/main/java/com/projectone/ql_utc/repositorys/PhieuMuonRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ql_utc/ql_utc/src/main/java/com/projectone/ql_utc/repositorys/PhongRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ql_utc/ql_utc/src/main/java/com/projectone/ql_utc/repositorys/SinhVienRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ql_utc/ql_utc/src/main/java/com/projectone/ql_utc/repositorys/ThanhLyRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ql_utc/ql_utc/src/main/java/com/projectone/ql_utc/repositorys/ThietBiRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ql_utc/ql_utc/src/main/java/com/projectone/ql_utc/responses/BaoTriResponse.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ql_utc/ql_utc/src/main/java/com/projectone/ql_utc/responses/MuaMoiResponse.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ql_utc/ql_utc/src/main/java/com/projectone/ql_utc/responses/ThanhLyResponse.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ql_utc/ql_utc/src/main/java/com/projectone/ql_utc/responses/ThietBiResponse.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ql_utc/ql_utc/src/main/java/com/projectone/ql_utc/services/BaoTriService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ql_utc/ql_utc/src/main/java/com/projectone/ql_utc/services/DashboardService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ql_utc/ql_utc/src/main/java/com/projectone/ql_utc/services/LoaiThietBiService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ql_utc/ql_utc/src/main/java/com/projectone/ql_utc/services/MuaMoiService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ql_utc/ql_utc/src/main/java/com/projectone/ql_utc/services/NhanVienService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ql_utc/ql_utc/src/main/java/com/projectone/ql_utc/services/PhieuMuonService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ql_utc/ql_utc/src/main/java/com/projectone/ql_utc/services/ThanhLyService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ql_utc/ql_utc/src/main/java/com/projectone/ql_utc/services/ThietBiService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ql_utc/ql_utc/src/main/resources/application.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ql_utc/ql_utc/src/test/java/com/projectone/ql_utc/QlUtcApplicationTests.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/QL_CSVC_FRONT/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/QL_CSVC_FRONT/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/QL_CSVC_FRONT/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/QL_CSVC_FRONT/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/QL_CSVC_FRONT/src/components/staff/styles/dashboard.css" beforeDir="false" afterPath="$PROJECT_DIR$/QL_CSVC_FRONT/src/components/staff/styles/dashboard.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/QL_CSVC_FRONT/src/components/staff/styles/duyetphieumuon.css" beforeDir="false" afterPath="$PROJECT_DIR$/QL_CSVC_FRONT/src/components/staff/styles/duyetphieumuon.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/QL_CSVC_FRONT/src/main.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/QL_CSVC_FRONT/src/main.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/QL_CSVC_FRONT/src/pages/staff/Dashboard.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/QL_CSVC_FRONT/src/pages/staff/Dashboard.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/QL_CSVC_FRONT/src/pages/staff/DuyetPhieuMuon.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/QL_CSVC_FRONT/src/pages/staff/DuyetPhieuMuon.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/QL_CSVC_FRONT/src/pages/staff/HoSo.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/QL_CSVC_FRONT/src/pages/staff/HoSo.jsx" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Exception" />
+        <option value="Enum" />
+        <option value="Interface" />
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 1
+}</component>
+  <component name="ProjectId" id="33jtHOy3MKVCCz3a5trIt2v5rII" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Application.QlUtcApplication.executor&quot;: &quot;Run&quot;,
+    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
+    &quot;RequestMappingsPanelOrder0&quot;: &quot;0&quot;,
+    &quot;RequestMappingsPanelOrder1&quot;: &quot;1&quot;,
+    &quot;RequestMappingsPanelWidth0&quot;: &quot;75&quot;,
+    &quot;RequestMappingsPanelWidth1&quot;: &quot;75&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;Spring Boot.QlUtcApplication.executor&quot;: &quot;Run&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;Long&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/phaml/IdeaProjects/Project1/QL_CSVC&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  },
+  &quot;keyToStringList&quot;: {
+    &quot;DatabaseDriversLRU&quot;: [
+      &quot;mysql&quot;
+    ]
+  }
+}</component>
+  <component name="RunManager" selected="Spring Boot.QlUtcApplication">
+    <configuration name="QlUtcApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.projectone.ql_utc.QlUtcApplication" />
+      <module name="ql_utc" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.projectone.ql_utc.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="JetRunConfigurationType">
+      <module name="QL_CSVC" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="KotlinStandaloneScriptRunConfigurationType">
+      <module name="QL_CSVC" />
+      <option name="filePath" />
+      <method v="2" />
+    </configuration>
+    <configuration name="QlUtcApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+      <option name="FRAME_DEACTIVATION_UPDATE_POLICY" value="UpdateClassesAndResources" />
+      <module name="ql_utc" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.projectone.ql_utc.QlUtcApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.QlUtcApplication" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-jdk-9823dce3aa75-bf35d07a577b-intellij.indexing.shared.core-IU-252.26830.84" />
+        <option value="bundled-js-predefined-d6986cc7102b-3aa1da707db6-JavaScript-IU-252.26830.84" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="e32a5dfc-79f0-4b1d-8fb5-15d709268cb5" name="Changes" comment="" />
+      <created>1759842220149</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1759842220149</updated>
+      <workItem from="1759842221367" duration="1286000" />
+      <workItem from="1759843564830" duration="1022000" />
+      <workItem from="1759894185943" duration="471000" />
+      <workItem from="1760014662844" duration="3460000" />
+      <workItem from="1760064506562" duration="475000" />
+      <workItem from="1760446774545" duration="3526000" />
+      <workItem from="1760451645435" duration="63000" />
+      <workItem from="1760451961005" duration="12437000" />
+      <workItem from="1760538721670" duration="4501000" />
+      <workItem from="1760574285206" duration="5623000" />
+      <workItem from="1760595295955" duration="14876000" />
+      <workItem from="1760792639596" duration="6819000" />
+      <workItem from="1760855381388" duration="6057000" />
+      <workItem from="1761013950417" duration="1798000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+</project>
