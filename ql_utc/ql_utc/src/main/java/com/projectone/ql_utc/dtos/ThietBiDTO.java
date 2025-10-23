@@ -23,6 +23,9 @@ public class ThietBiDTO {
     @JsonProperty("ma_loai")
     private String maLoai;
 
+    @JsonProperty("ma_phong")   // 🔹 thêm dòng này
+    private String maPhong;
+
     @JsonProperty("ngay_nhap")
     private Date ngayNhap;
 

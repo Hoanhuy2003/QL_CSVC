@@ -17,6 +17,7 @@ public class ThietBiResponse {
     private String maTB;
     private String tenTB;
     private String loai;
+    private String phong;
     private Date ngayNhap;
     private TinhTrangThietBi tinhTrang;
     private BigDecimal giaTri;
@@ -26,6 +27,7 @@ public class ThietBiResponse {
                 .maTB(thietBi.getMaTB())
                 .tenTB(thietBi.getTenTB())
                 .loai(thietBi.getLoai().getTenLoai())
+                .phong(thietBi.getPhong().getMaPhong())
                 .ngayNhap(thietBi.getNgayNhap())
                 .tinhTrang(thietBi.getTinhTrang())
                 .giaTri(thietBi.getGiaTri())

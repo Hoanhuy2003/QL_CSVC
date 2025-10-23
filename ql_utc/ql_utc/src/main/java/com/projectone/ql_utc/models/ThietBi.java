@@ -38,4 +38,8 @@ public class ThietBi {
 
     @Column(name = "gia_tri", precision = 18, scale = 2)
     private BigDecimal giaTri;
+
+    @ManyToOne
+    @JoinColumn(name = "ma_phong")
+    private Phong phong;
 }

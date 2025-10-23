@@ -1,7 +1,10 @@
 package com.projectone.ql_utc.dtos;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.projectone.ql_utc.enums.TrangThaiPhong;
 import lombok.*;
+
+import java.util.List;
 
 @Data
 @Getter
@@ -23,5 +26,10 @@ public class PhongDTO {
     private Integer sucChua;
 
     @JsonProperty("trang_thai")
-    private Integer trangThai;
+    private TrangThaiPhong trangThai;
+
+    // Danh sách tên hoặc DTO của thiết bị
+    @JsonProperty("thiet_bi_co_dinh")
+    private List<ThietBiDTO> thietBis;
 }
+

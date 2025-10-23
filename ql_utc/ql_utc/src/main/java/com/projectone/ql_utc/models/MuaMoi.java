@@ -37,6 +37,6 @@ public class MuaMoi {
     @Column(name = "don_gia", precision = 18, scale = 2)
     private BigDecimal donGia;
 
-    // getters & setters
+
 }
 

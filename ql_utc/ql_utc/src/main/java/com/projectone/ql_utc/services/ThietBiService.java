@@ -5,8 +5,10 @@ import com.projectone.ql_utc.dtos.ThietBiDTO;
 import com.projectone.ql_utc.exception.DataNotFoundException;
 import com.projectone.ql_utc.iservices.IThietBiService;
 import com.projectone.ql_utc.models.LoaiThietBi;
+import com.projectone.ql_utc.models.Phong;
 import com.projectone.ql_utc.models.ThietBi;
 import com.projectone.ql_utc.repositorys.LoaiThietBiRepository;
+import com.projectone.ql_utc.repositorys.PhongRepository;
 import com.projectone.ql_utc.repositorys.ThietBiRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -19,15 +21,20 @@ public class ThietBiService implements IThietBiService {
 
     private final ThietBiRepository thietBiRepository;
     private final LoaiThietBiRepository loaiThietBiRepository;
+    private final PhongRepository phongRepository;
 
     @Override
     public ThietBi createThietBi(ThietBiDTO thietBiDTO) {
         LoaiThietBi loaiThietBi = loaiThietBiRepository.findById(thietBiDTO.getMaLoai())
                 .orElseThrow(()-> new DataNotFoundException("Không có loại này"));
+        Phong phong = phongRepository.findById(thietBiDTO.getMaPhong())
+                .orElseThrow(()-> new DataNotFoundException("Không tìm thấy phòng này"));
+
         ThietBi thietBi = ThietBi.builder()
                 .maTB(thietBiDTO.getMaTB())
                 .tenTB(thietBiDTO.getTenTB())
                 .loai(loaiThietBi)
+                .phong(phong)
                 .ngayNhap(thietBiDTO.getNgayNhap())
                 .tinhTrang(thietBiDTO.getTinhTrang())
                 .giaTri(thietBiDTO.getGiaTri())

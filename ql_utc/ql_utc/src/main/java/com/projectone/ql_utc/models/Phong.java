@@ -30,6 +30,9 @@ public class Phong {
     @Column(name = "trang_thai")
     private TrangThaiPhong trangThai;
 
+    @OneToMany(mappedBy = "phong", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private List<ThietBi> thietBis;
+
     
 
 
